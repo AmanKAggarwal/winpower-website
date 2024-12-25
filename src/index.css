@@ -1,0 +1,14 @@
+/* Reset default margins and paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Include padding and border in element width/height */
+}
+
+/* Set default body styles */
+body {
+  font-family: 'Roboto', sans-serif; /* Or your preferred font */
+  background-color: #f5f5f5; /* Optional: Light gray background */
+  color: #333; /* Default text color */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
