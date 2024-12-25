@@ -7,7 +7,7 @@
 
 /* Set default body styles */
 body {
-  font-family: 'Roboto', sans-serif; /* Or your preferred font */
+  font-family: 'Nunito', sans-serif; /* Use Nunito instead of Roboto */
   background-color: #f5f5f5; /* Optional: Light gray background */
   color: #333; /* Default text color */
   overflow-x: hidden; /* Prevent horizontal scrolling */

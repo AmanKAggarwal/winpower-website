@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import NotFoundPage from "./pages/NotFoundPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ROUTES } from "./Routes";
@@ -21,6 +22,7 @@ const App: React.FC = () => {
         {/* Catch-all route for 404 */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <Footer />
     </Router>
   );
 };
