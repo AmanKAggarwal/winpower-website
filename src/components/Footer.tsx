@@ -1,17 +1,34 @@
 import React from "react";
 import styled from "styled-components";
-import { FaMapMarkerAlt, FaPhoneAlt, FaMobileAlt, FaEnvelope, FaFacebook } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { ROUTES } from "../Routes"; // Import your routes for dynamic links
-
-import footerData from "../contents/footer.json"; // Import JSON file
-import FooterData from "../types/FooterData"; // Import FooterData type
+import { FaMapMarkerAlt, FaPhoneAlt, FaMobileAlt, FaEnvelope, FaFacebook } from "react-icons/fa";
+import { ROUTES } from "../Routes";
+import footerData from "../contents/footer.json";
+import FooterData from "../types/FooterData";
+import { fadeIn, slideUp } from "../styles/animations";
 
 // Styled Components
 const FooterHeader = styled.h4`
   font-size: 1.2rem;
   margin-bottom: 0.8rem;
   color: #fff;
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #e95d22;
+    transition: width 0.3s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
 `;
 
 const FooterDescription = styled.p`
@@ -48,20 +65,24 @@ const ServiceList = styled.ul`
   list-style: none;
   padding: 0;
   margin-bottom: 2rem;
+  animation: ${slideUp} 0.5s ease-out;
 
   li {
     font-size: 0.9rem;
     color: #bbb;
     margin: 0.5rem 0;
+    transition: all 0.3s ease;
 
     a {
       text-decoration: none;
       color: inherit;
       display: block;
       padding: 0.5rem 0;
+      transition: all 0.3s ease;
 
       &:hover {
         color: #e95d22;
+        transform: translateX(10px);
       }
     }
   }
@@ -99,28 +120,41 @@ const ContactItem = styled.div`
   align-items: center;
   margin-bottom: 1rem;
   color: #bbb;
+  transition: all 0.3s ease;
 
   svg {
     color: #e95d22;
     margin-right: 1rem;
     font-size: 1.5rem;
     flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    color: #fff;
+    
+    svg {
+      transform: scale(1.2);
+    }
   }
 
   a {
     text-decoration: none;
-    color: #bbb;
+    color: inherit;
     padding: 0.5rem 0;
     display: block;
     word-break: break-word;
+    transition: all 0.3s ease;
 
     &:hover {
       color: #e95d22;
+      transform: translateX(5px);
     }
   }
 
   span {
     word-break: break-word;
+    transition: all 0.3s ease;
   }
 
   @media (max-width: 768px) {
@@ -189,6 +223,7 @@ const FooterContainer = styled.div`
   background-color: #141414;
   color: #d6d6d6;
   padding: 3rem;
+  animation: ${fadeIn} 0.5s ease-out;
 
   @media (max-width: 768px) {
     padding: 2rem 1.5rem;
@@ -200,6 +235,7 @@ const FooterContent = styled.div`
   justify-content: space-between;
   gap: 2rem;
   margin-bottom: 2rem;
+  animation: ${slideUp} 0.5s ease-out;
 
   @media (max-width: 768px) {
     flex-direction: column;

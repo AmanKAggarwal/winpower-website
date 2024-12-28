@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { ROUTES } from "../Routes"; 
 import { Images } from "../data/images";
 import NavbarElement from "./NavbarElement";
+import { fadeIn, slideInRight } from "../styles/animations";
 
 // Styled components
 interface NavbarContainerProps {
@@ -33,6 +34,11 @@ const LogoImage = styled.img`
   height: 90px;
   border-radius: 50%;
   object-fit: cover;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 
   @media (max-width: 768px) {
     width: 70px;
@@ -43,7 +49,8 @@ const LogoImage = styled.img`
 const NavLinks = styled.ul<{ $isOpen: boolean }>`
   display: flex;
   list-style: none;
-  gap: 2rem;
+  gap: 1.5rem;
+  animation: ${fadeIn} 0.3s ease-out;
 
   @media (max-width: 768px) {
     display: ${props => props.$isOpen ? 'flex' : 'none'};
@@ -56,6 +63,7 @@ const NavLinks = styled.ul<{ $isOpen: boolean }>`
     padding: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     gap: 1rem;
+    animation: ${slideInRight} 0.3s ease-out;
   }
 `;
 
@@ -88,6 +96,11 @@ const HamburgerButton = styled.button`
 
   &:hover {
     background: rgba(233, 93, 34, 0.1);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 
   &:focus {

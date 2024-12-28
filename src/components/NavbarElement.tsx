@@ -1,41 +1,72 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { RouteElement } from "../types/RouteElement"; // Adjust the path if necessary
+import { RouteElement } from "../types/RouteElement";
+import { fadeIn, slideInRight } from "../styles/animations";
 
 // Styled components
 const NavLink = styled.li<{ active?: boolean; hasChildren?: boolean }>`
   font-size: 1rem;
-  color: ${(props) => (props.active ? "#e95d22" : "#000")}; /* Highlight active */
+  color: ${(props) => (props.active ? "#e95d22" : "#000")};
   cursor: pointer;
-  transition: color 0.3s ease;
-  position: relative; /* Needed for dropdown arrow positioning */
+  transition: all 0.3s ease;
+  position: relative;
   display: flex;
-  align-items: center; /* Align text and arrow vertically */
+  align-items: center;
+  padding: 0.5rem 0;
+  gap: 0.4rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #e95d22;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
 
   &:hover {
     color: #e95d22;
+
+    &::after {
+      width: 100%;
+    }
   }
 
   a {
     text-decoration: none;
     color: inherit;
+    transition: all 0.3s ease;
+    order: 1;
   }
 
   ${(props) =>
     props.hasChildren &&
     `
       &::after {
+        display: none;
+      }
+
+      &::before {
         content: "⌵";
         font-size: 1.2rem;
         color: inherit;
-        margin-left: 0.3rem;
         position: relative;
         top: -2px;
         line-height: 1;
         font-weight: bold;
         transform: scaleY(0.6);
         pointer-events: none;
+        transition: transform 0.3s ease;
+        order: 2;
+        margin-left: auto;
+      }
+
+      &:hover::before {
+        transform: scaleY(0.6) translateY(2px);
       }
     `}
 
@@ -46,46 +77,102 @@ const NavLink = styled.li<{ active?: boolean; hasChildren?: boolean }>`
     justify-content: space-between;
 
     &::after {
-      margin-left: auto;
-      transform: ${props => props.hasChildren ? 'scaleY(0.6) rotate(0)' : 'scaleY(0.6) rotate(180deg)'};
-      transition: transform 0.3s ease;
+      display: none;
     }
+
+    &:hover {
+      transform: translateX(10px);
+    }
+
+    ${props => props.hasChildren && `
+      &::before {
+        display: none;
+      }
+
+      &::after {
+        display: block;
+        content: "⌵";
+        position: static;
+        background: none;
+        font-size: 1.2rem;
+        color: inherit;
+        margin-left: auto;
+        line-height: 1;
+        font-weight: bold;
+        transform: ${props.active ? 'scaleY(0.6) rotate(180deg)' : 'scaleY(0.6)'};
+        pointer-events: none;
+        transition: transform 0.3s ease;
+        width: auto;
+        height: auto;
+        order: 2;
+      }
+    `}
   }
 `;
 
 const DropdownMenu = styled.ul`
   display: inherit;
   position: absolute;
-  top: 100%; /* Place the dropdown below the NavLink */
-  left: 0;
+  top: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%);
   background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e95d22; /* Add border with the active color */
-  border-radius: 4px; /* Optional: Add rounded corners */
+  border: 1px solid #e95d22;
+  border-radius: 4px;
   list-style: none;
-  padding: 0rem 1rem; /* Add padding inside the dropdown */
+  padding: 0.5rem 1rem;
   z-index: 1000;
-  min-width: 250px; /* Set a wider minimum width for the dropdown */
+  min-width: 250px;
+  animation: ${fadeIn} 0.2s ease-out;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -0.5rem;
+    left: 0;
+    right: 0;
+    height: 0.5rem;
+    background: transparent;
+  }
 
   li {
-    padding: 0.5rem 0; /* Add vertical padding for each item */
-    color: #666; /* Default text color for dropdown items */
-    font-size: 1rem; /* Adjust font size for readability */
-    transition: color 0.3s ease, background-color 0.3s ease;
+    padding: 0.5rem 0;
+    color: #666;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: #e95d22;
+      transition: width 0.3s ease;
+    }
 
     &:hover {
-      color: #e95d22; /* Highlight text color on hover */
+      color: #e95d22;
+
+      &::after {
+        width: 100%;
+      }
     }
 
     a {
       text-decoration: none;
       color: inherit;
-      display: block; /* Ensure the entire item is clickable */
+      display: block;
+      padding: 0.5rem 0;
     }
   }
 
   @media (max-width: 768px) {
     position: static;
+    transform: none;
     box-shadow: none;
     border: none;
     border-left: 2px solid #e95d22;
@@ -93,19 +180,23 @@ const DropdownMenu = styled.ul`
     padding: 0 0 0 1rem;
     min-width: unset;
     width: 100%;
+    animation: ${slideInRight} 0.3s ease-out;
+
+    &::before {
+      display: none;
+    }
 
     li {
       padding: 0.5rem 0;
+      
+      &::after {
+        display: none;
+      }
+      
+      &:hover {
+        transform: translateX(8px);
+      }
     }
-  }
-`;
-
-const NavLinkContainer = styled.div`
-  position: relative; /* Ensure dropdown is positioned relative to the parent */
-  display: inline-block; /* Needed for dropdown alignment */
-
-  @media (max-width: 768px) {
-    width: 100%;
   }
 `;
 
@@ -117,6 +208,15 @@ const DropdownMenuContainer = styled.div`
         display: block;
       }
     }
+`;
+
+const NavLinkContainer = styled.div`
+  position: relative; /* Ensure dropdown is positioned relative to the parent */
+  display: inline-block; /* Needed for dropdown alignment */
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const NavLinkWithDropdown = styled(NavLinkContainer)`
@@ -131,7 +231,6 @@ const NavLinkWithDropdown = styled(NavLinkContainer)`
     }
   }
 `;
-
 
 const NavbarElement: React.FC<{ route: RouteElement; active: boolean }> = ({ route, active }) => {
   if (route.children && route.children.length > 0) {
