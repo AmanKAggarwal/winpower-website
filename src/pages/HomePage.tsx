@@ -1,36 +1,547 @@
-// src/pages/DummyPage.js
-import React from 'react';
+// src/pages/HomePage.tsx
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { Images } from '../data/images';
+import { testimonials } from '../data/testimonials';
+import { ROUTES } from "../Routes";
 
-// Styled component for the page container
-const PageContainer = styled.div`
-  min-height: 100vh; /* Ensure the container covers the full height of the viewport */
+const HeroSection = styled.section`
+  position: relative;
+  height: 80vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${Images.PowerlineImage});
+  background-size: cover;
+  background-position: center;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   text-align: center;
+  color: white;
+`;
+
+const HeroTitle = styled.h1`
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  max-width: 800px;
+
+  span {
+    color: #e95d22;
+  }
+`;
+
+const HeroSubtitle = styled.p`
+  font-size: 1.5rem;
+  max-width: 600px;
+  margin-bottom: 2rem;
+`;
+
+const ProjectsSection = styled.section`
+  background: #f8f9fa;
+  padding: 5rem 2rem;
+  text-align: center;
+`;
+
+const ProjectGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const ProjectCard = styled.div`
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.1);
+  }
+`;
+
+const Section = styled.section<{ $dark?: boolean }>`
+  padding: 2.5rem 2rem;
+  background: ${props => props.$dark ? '#f5f5f5' : '#fff'};
+  color: ${props => props.$dark ? '#333' : '#333'};
+`;
+
+const SectionTitle = styled.h2<{ $dark?: boolean }>`
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: ${props => props.$dark ? '#333' : '#333'};
+  position: relative;
+  
+  &:after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #e95d22;
+    margin: 1rem auto 0;
+    border-radius: 2px;
+  }
+`;
+
+const ServicesGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+`;
+
+const ServiceCard = styled.div`
+  background: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: #e95d22;
+    box-shadow: 0 12px 48px rgba(233, 93, 34, 0.15);
+  }
+
+  img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    border: 4px solid #f5f5f5;
+    transition: all 0.3s ease;
+  }
+
+  &:hover img {
+    border-color: #e95d22;
+    transform: scale(1.05);
+  }
+
+  h3 {
+    color: #333;
+    margin: 1rem 0;
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+`;
+
+const TestimonialsSection = styled.section`
+  background: #fff;
+  padding: 5rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+`;
+
+const TestimonialWrapper = styled.div`
+  position: relative;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 60px;
+`;
+
+const TestimonialContainer = styled.div`
+  width: 800px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+`;
+
+const TestimonialSlider = styled.div`
+  display: flex;
+  transition: transform 0.5s ease-in-out;
   width: 100%;
 `;
 
-const PageSection = styled.div`
-  background-color: gray; /* Set background to gray */
-  color: white; /* Set text color to white */
-  width: 100%;
-  padding: 20rem;
+const TestimonialSlide = styled.div`
+  background: #000;
+  color: white;
+  padding: 3rem;
+  text-align: center;
+  width: 800px;
+  flex-shrink: 0;
 `;
 
-const DummyPage = () => {
+const QuoteIcon = styled.div`
+  font-size: 4rem;
+  color: #e95d22;
+  margin-bottom: 1rem;
+`;
+
+const TestimonialText = styled.p`
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const TestimonialAuthor = styled.div`
+  h4 {
+    color: #e95d22;
+    margin-bottom: 0.5rem;
+  }
+  p {
+    opacity: 0.8;
+  }
+`;
+
+const ArrowButton = styled.button<{ $direction: 'left' | 'right' }>`
+  position: absolute;
+  top: 50%;
+  ${props => props.$direction === 'left' ? 'left: 0;' : 'right: 0;'}
+  transform: translateY(-50%);
+  background: white;
+  border: 2px solid #e95d22;
+  color: #e95d22;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 2;
+  font-size: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background: #e95d22;
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  @media (max-width: 1024px) {
+    ${props => props.$direction === 'left' ? 'left: 10px;' : 'right: 10px;'}
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const DotContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+`;
+
+const Dot = styled.button<{ $active: boolean }>`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: ${props => props.$active ? '#e95d22' : '#ccc'};
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: #e95d22;
+  }
+`;
+
+const AboutSection = styled.section`
+  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${Images.PowerlineImage});
+  background-size: cover;
+  background-position: center;
+  color: #333;
+  padding: 5rem 2rem;
+  text-align: center;
+
+  p {
+    max-width: 1000px;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    opacity: 0.8;
+  }
+`;
+
+const DiscussSection = styled(Section)`
+  background: #e95d22;
+  color: white;
+  text-align: left;
+  padding: 2.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+  }
+`;
+
+const DiscussContent = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  gap: 3rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+`;
+
+const DiscussText = styled.div`
+  flex: 1;
+  max-width: 700px;
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+  }
+
+  @media (max-width: 768px) {
+    h2 {
+      font-size: 2rem;
+    }
+  }
+`;
+
+const DiscussButton = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  background: white;
+  color: #e95d22;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid white;
+  white-space: nowrap;
+  height: fit-content;
+  align-self: center;
+
+  &:hover {
+    background: transparent;
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 0.5rem;
+  }
+`;
+
+const Button = styled.button`
+  background: transparent;
+  color: #e95d22;
+  border: 2px solid #e95d22;
+  padding: 0.8rem 2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+
+  &:hover {
+    background: #e95d22;
+    color: white;
+    transform: translateY(-2px);
+  }
+`;
+
+const HomePage = () => {
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [direction, setDirection] = useState(1);
+
+  const servicesRoutes = ROUTES.find((route) => route.title === "Services")?.children || [];
+  const contactRoute = ROUTES.find((route) => route.title === "Contact Us")?.path || "/contact";
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDirection(1);
+      setCurrentTestimonial((prev) => 
+        prev === testimonials.length - 1 ? 0 : prev + 1
+      );
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const handlePrevious = () => {
+    setDirection(-1);
+    setCurrentTestimonial((prev) => 
+      prev === 0 ? testimonials.length - 1 : prev - 1
+    );
+  };
+
+  const handleNext = () => {
+    setDirection(1);
+    setCurrentTestimonial((prev) => 
+      prev === testimonials.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const handleDotClick = (index: number) => {
+    setDirection(index > currentTestimonial ? 1 : -1);
+    setCurrentTestimonial(index);
+  };
+
+  const serviceImages = {
+    "/services/substations-transmission-distribution-line": Images.SubstationHQImage,
+    "/services/designing": Images.DesignBuildingImage,
+    "/services/survey-inspection": Images.SurveyInspectionImage,
+  };
+
   return (
-    <PageContainer>
-      <PageSection>
-        <h1>Header</h1>
-        <p>This is a section of the page</p>
-      </PageSection>
-      <h1>Dummy Page</h1>
-      <p>This is a placeholder for a future home page</p>
-    </PageContainer>
+    <>
+      <HeroSection>
+        <HeroTitle>
+          BUILDING <span>FOUNDATION</span><br />
+          FOR A BETTER FUTURE
+        </HeroTitle>
+        <HeroSubtitle>
+          Our objective is to bridge the gap of sustainable development worldwide.
+        </HeroSubtitle>
+      </HeroSection>
+
+      <ProjectsSection>
+        <SectionTitle>PROJECT HIGHLIGHTS</SectionTitle>
+        <ProjectGrid>
+          <ProjectCard>
+            <img src={Images.SubstationHQImage} alt="Substation HQ" />
+          </ProjectCard>
+          <ProjectCard>
+            <img src={Images.Powerline2Image} alt="Transmission Line" />
+          </ProjectCard>
+          <ProjectCard>
+            <img src={Images.CraneImage} alt="Construction" />
+          </ProjectCard>
+        </ProjectGrid>
+      </ProjectsSection>
+
+      <Section $dark>
+        <SectionTitle $dark>WHAT WE OFFER</SectionTitle>
+        <ServicesGrid>
+          {servicesRoutes.map((service) => (
+            <ServiceCard key={service.path}>
+              <img 
+                src={serviceImages[service.path as keyof typeof serviceImages]} 
+                alt={service.title}
+              />
+              <h3>{service.title}</h3>
+              <Link to={service.path}>
+                <Button>Learn More</Button>
+              </Link>
+            </ServiceCard>
+          ))}
+        </ServicesGrid>
+      </Section>
+
+      <TestimonialsSection>
+        <SectionTitle>WHAT THEY'RE SAYING</SectionTitle>
+        <TestimonialWrapper>
+          <ArrowButton $direction="left" onClick={handlePrevious}>
+            &#8592;
+          </ArrowButton>
+          <TestimonialContainer>
+            <TestimonialSlider
+              style={{
+                transform: `translateX(-${currentTestimonial * 100}%)`,
+              }}
+            >
+              {testimonials.map((testimonial, index) => (
+                <TestimonialSlide key={testimonial.id}>
+                  <QuoteIcon>"</QuoteIcon>
+                  <TestimonialText>
+                    {testimonial.text}
+                  </TestimonialText>
+                  <TestimonialAuthor>
+                    <h4>{testimonial.author}</h4>
+                    <p>{testimonial.position}</p>
+                  </TestimonialAuthor>
+                </TestimonialSlide>
+              ))}
+            </TestimonialSlider>
+          </TestimonialContainer>
+          <ArrowButton $direction="right" onClick={handleNext}>
+            &#8594;
+          </ArrowButton>
+          <DotContainer>
+            {testimonials.map((_, index) => (
+              <Dot
+                key={index}
+                $active={currentTestimonial === index}
+                onClick={() => handleDotClick(index)}
+              />
+            ))}
+          </DotContainer>
+        </TestimonialWrapper>
+      </TestimonialsSection>
+
+      <AboutSection>
+        <SectionTitle>WHO WE ARE</SectionTitle>
+        <p>
+          Win Power Infra Pvt. Ltd. is a pillar of Singhi group of companies, and a diversified company established in 1993 
+          with an objective to bridge the gap of sustainable development of power in Rural & semi urban areas in North Eastern region. 
+          The North eastern region is one of typical & remote terrain where we are successfully delivering our goal and brought smile 
+          to millions of people in the hinterland of the country.
+        </p>
+      </AboutSection>
+
+      <DiscussSection>
+        <DiscussContent>
+          <DiscussText>
+            <h2>LET'S DISCUSS!</h2>
+            <p>Want to start your dream project? But have many doubts in your mind.</p>
+            <p>We are always here to help you. Sit back and let us take care of your project.</p>
+          </DiscussText>
+          <DiscussButton to={contactRoute}>Contact Us</DiscussButton>
+        </DiscussContent>
+      </DiscussSection>
+    </>
   );
 };
 
-export default DummyPage;
+export default HomePage;

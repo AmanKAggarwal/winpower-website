@@ -3,6 +3,7 @@ import { RouteElement } from "./types/RouteElement";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 // import DummyPage from "./pages/DummyPage";
+import ServicesPage from "./pages/ServicesPage";
 import ServiceSubstationPage from "./pages/ServiceSubstationPage";
 import ServiceDesigningPage from "./pages/ServiceDesigningPage";
 import ServiceSurveyInspectionPage from "./pages/ServiceSurveyInspectionPage";
@@ -23,7 +24,7 @@ export const ROUTES: RouteElement[] = [
   {
     path: "/services",
     title: "Services",
-    component: <ServiceSubstationPage />,
+    component: <ServicesPage />,
     children: [
       {
         path: "/services/substations-transmission-distribution-line",
