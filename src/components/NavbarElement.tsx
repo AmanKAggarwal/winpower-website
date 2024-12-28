@@ -22,20 +22,35 @@ const NavLink = styled.li<{ active?: boolean; hasChildren?: boolean }>`
     color: inherit;
   }
 
-  /* Add the dropdown arrow */
   ${(props) =>
     props.hasChildren &&
     `
       &::after {
-        content: "▾"; /* Use a lighter arrow pointing downward */
-        font-size: 0.8rem; /* Slightly smaller than the text */
-        color: inherit; /* Inherit color for consistent styling */
-        margin-left: 0.3rem; /* Space between the text and arrow */
+        content: "⌵";
+        font-size: 1.2rem;
+        color: inherit;
+        margin-left: 0.3rem;
         position: relative;
-        top: 1px; /* Align arrow with the text baseline */
-        pointer-events: none; /* Prevent interaction with the arrow */
+        top: -2px;
+        line-height: 1;
+        font-weight: bold;
+        transform: scaleY(0.6);
+        pointer-events: none;
       }
     `}
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+    padding: 0.5rem 0;
+    width: 100%;
+    justify-content: space-between;
+
+    &::after {
+      margin-left: auto;
+      transform: ${props => props.hasChildren ? 'scaleY(0.6) rotate(0)' : 'scaleY(0.6) rotate(180deg)'};
+      transition: transform 0.3s ease;
+    }
+  }
 `;
 
 const DropdownMenu = styled.ul`
@@ -68,21 +83,52 @@ const DropdownMenu = styled.ul`
       display: block; /* Ensure the entire item is clickable */
     }
   }
+
+  @media (max-width: 768px) {
+    position: static;
+    box-shadow: none;
+    border: none;
+    border-left: 2px solid #e95d22;
+    margin-left: 1rem;
+    padding: 0 0 0 1rem;
+    min-width: unset;
+    width: 100%;
+
+    li {
+      padding: 0.5rem 0;
+    }
+  }
 `;
 
 const NavLinkContainer = styled.div`
   position: relative; /* Ensure dropdown is positioned relative to the parent */
   display: inline-block; /* Needed for dropdown alignment */
-`;
 
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
 
 const DropdownMenuContainer = styled.div`
     display: none; /* Hide the dropdown menu by default */
+
+    @media (max-width: 768px) {
+      &:hover {
+        display: block;
+      }
+    }
 `;
 
 const NavLinkWithDropdown = styled(NavLinkContainer)`
   &:hover ${DropdownMenuContainer} {
     display: block; /* Show dropdown menu on hover */
+  }
+
+  @media (max-width: 768px) {
+    ${DropdownMenuContainer} {
+      display: block;
+      margin-top: 0.5rem;
+    }
   }
 `;
 

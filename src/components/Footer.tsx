@@ -8,18 +8,28 @@ import footerData from "../contents/footer.json"; // Import JSON file
 import FooterData from "../types/FooterData"; // Import FooterData type
 
 // Styled Components
-// Styled Components
 const FooterHeader = styled.h4`
   font-size: 1.2rem;
   margin-bottom: 0.8rem;
+  color: #fff;
 `;
 
 const FooterDescription = styled.p`
   line-height: 1.6;
+  margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const CompanyDescriptionWrapper = styled.div`
-  flex: 0 0 30%; /* Occupy exactly 30% of the width */
+  flex: 0 0 30%;
+
+  @media (max-width: 768px) {
+    flex: 1 1 100%;
+    margin-bottom: 2rem;
+  }
 `;
 
 const CompanyDescriptionSection: React.FC<{ title: string; description: string }> = ({
@@ -37,6 +47,7 @@ const CompanyDescriptionSection: React.FC<{ title: string; description: string }
 const ServiceList = styled.ul`
   list-style: none;
   padding: 0;
+  margin-bottom: 2rem;
 
   li {
     font-size: 0.9rem;
@@ -46,10 +57,20 @@ const ServiceList = styled.ul`
     a {
       text-decoration: none;
       color: inherit;
+      display: block;
+      padding: 0.5rem 0;
 
       &:hover {
-        color: #e95d22; /* Highlight on hover */
+        color: #e95d22;
       }
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 2rem;
+
+    li a {
+      padding: 0.7rem 0;
     }
   }
 `;
@@ -83,14 +104,30 @@ const ContactItem = styled.div`
     color: #e95d22;
     margin-right: 1rem;
     font-size: 1.5rem;
+    flex-shrink: 0;
   }
 
   a {
     text-decoration: none;
     color: #bbb;
+    padding: 0.5rem 0;
+    display: block;
+    word-break: break-word;
 
     &:hover {
       color: #e95d22;
+    }
+  }
+
+  span {
+    word-break: break-word;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 1.2rem;
+    
+    a, span {
+      padding: 0.7rem 0;
     }
   }
 `;
@@ -127,6 +164,14 @@ const GetInTouchSection: React.FC = () => {
 
 const CopyrightWrapper = styled.div`
   text-align: center;
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  @media (max-width: 768px) {
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
 `;
 
 const CopyrightSection: React.FC = () => {
@@ -134,49 +179,48 @@ const CopyrightSection: React.FC = () => {
 
   return (
     <CopyrightWrapper>
-      Copyright © {new Date().getFullYear()} {data.companyName} All rights
+      Copyright {new Date().getFullYear()} {data.companyName} All rights
       reserved.
     </CopyrightWrapper>
   );
 };
 
 const FooterContainer = styled.div`
-    background-color: #141414;
-    color: #d6d6d6;
-    padding: 3rem;
-`
+  background-color: #141414;
+  color: #d6d6d6;
+  padding: 3rem;
 
-const FooterVerticalFlexbox = styled.div`
-    display: flex;
+  @media (max-width: 768px) {
+    padding: 2rem 1.5rem;
+  }
+`;
+
+const FooterContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
     flex-direction: column;
-    gap: 2rem;
-`
-
-const FooterHorizontalFlexbox = styled.div`
-    display: flex;
-    gap: 2rem;
-`
-
-const Spacer = styled.div`
-    flex-grow: 1;
-`
+    gap: 0;
+  }
+`;
 
 const Footer: React.FC = () => {
-    const data: FooterData = footerData;
+  const data: FooterData = footerData;
+
   return (
-   <FooterContainer>
-     <FooterVerticalFlexbox>
-        <FooterHorizontalFlexbox>
-            <CompanyDescriptionSection
-                title={data.companyName.toUpperCase()}
-                description={data.about}
-            />
-            <ServicesSection />
-            <Spacer />
-            <GetInTouchSection />
-        </FooterHorizontalFlexbox>
-        <CopyrightSection />
-    </FooterVerticalFlexbox>
+    <FooterContainer>
+      <FooterContent>
+        <CompanyDescriptionSection
+          title={data.companyName}
+          description={data.about}
+        />
+        <ServicesSection />
+        <GetInTouchSection />
+      </FooterContent>
+      <CopyrightSection />
     </FooterContainer>
   );
 };
