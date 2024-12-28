@@ -156,56 +156,87 @@ const TestimonialsSection = styled.section`
 
 const TestimonialWrapper = styled.div`
   position: relative;
-  max-width: 920px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 0 60px;
+  padding: 0 3rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
 `;
 
 const TestimonialContainer = styled.div`
-  width: 800px;
-  margin: 0 auto;
-  position: relative;
   overflow: hidden;
-  border-radius: 8px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 `;
 
 const TestimonialSlider = styled.div`
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease;
   width: 100%;
 `;
 
 const TestimonialSlide = styled.div`
+  min-width: 100%;
+  padding: 3rem 2rem;
+  text-align: center;
   background: #000;
   color: white;
-  padding: 3rem;
-  text-align: center;
-  width: 800px;
-  flex-shrink: 0;
-`;
 
-const QuoteIcon = styled.div`
-  font-size: 4rem;
-  color: #e95d22;
-  margin-bottom: 1rem;
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 const TestimonialText = styled.p`
   font-size: 1.2rem;
   line-height: 1.8;
-  margin-bottom: 2rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 1.5rem auto;
+  color: white;
+  max-width: 800px;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 1rem auto;
+  }
+`;
+
+const QuoteIcon = styled.div`
+  font-size: 4rem;
+  color: #e95d22;
+  height: 40px;
+  line-height: 1;
+  margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 3rem;
+    height: 30px;
+    margin-bottom: 0.5rem;
+  }
 `;
 
 const TestimonialAuthor = styled.div`
   h4 {
     color: #e95d22;
+    font-size: 1.1rem;
     margin-bottom: 0.5rem;
   }
+  
   p {
-    opacity: 0.8;
+    color: #ddd;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    h4 {
+      font-size: 1rem;
+    }
+    p {
+      font-size: 0.8rem;
+    }
   }
 `;
 
@@ -226,22 +257,18 @@ const ArrowButton = styled.button<{ $direction: 'left' | 'right' }>`
   justify-content: center;
   transition: all 0.3s ease;
   z-index: 2;
-  font-size: 24px;
+  font-size: 1.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   &:hover {
     background: #e95d22;
     color: white;
-    transform: translateY(-50%) scale(1.1);
-  }
-
-  @media (max-width: 1024px) {
-    ${props => props.$direction === 'left' ? 'left: 10px;' : 'right: 10px;'}
-    background: rgba(255, 255, 255, 0.9);
   }
 
   @media (max-width: 768px) {
-    display: none;
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
   }
 `;
 
@@ -250,6 +277,11 @@ const DotContainer = styled.div`
   justify-content: center;
   gap: 0.5rem;
   margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    margin-top: 1rem;
+    gap: 0.3rem;
+  }
 `;
 
 const Dot = styled.button<{ $active: boolean }>`
@@ -257,12 +289,13 @@ const Dot = styled.button<{ $active: boolean }>`
   height: 10px;
   border-radius: 50%;
   border: none;
-  background: ${props => props.$active ? '#e95d22' : '#ccc'};
+  background-color: ${props => props.$active ? '#e95d22' : '#ddd'};
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 
-  &:hover {
-    background: #e95d22;
+  @media (max-width: 768px) {
+    width: 8px;
+    height: 8px;
   }
 `;
 
