@@ -2,7 +2,6 @@ import React from "react";
 
 import { SectionHeader } from "../components/SectionHeaders";
 import { 
-    HeaderSpacer,
     MaxWidthWrapper, 
     SectionContainer,
     FlexContainer, 
@@ -68,7 +67,6 @@ const ServicesSection: React.FC = () => {
 const ServiceSurveyInspectionPage: React.FC = () => {
   return (
     <div>
-      <HeaderSpacer />
       <PageTitleSection
         title="Survey & Inspection"
         leftImagePath={Images.SurveyInspectionHeaderImage}

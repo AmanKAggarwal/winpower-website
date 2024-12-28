@@ -5,7 +5,11 @@ import { ROUTES } from "../Routes"; // Ensure correct path
 import { Images } from "../data/images";
 import NavbarElement from "./NavbarElement";
 // Styled components
-const NavbarContainer = styled.nav`
+interface NavbarContainerProps {
+  isScrolled: boolean;
+}
+
+const NavbarContainer = styled.nav<NavbarContainerProps>`
   position: fixed;
   top: 0;
   width: 100%;
@@ -13,7 +17,9 @@ const NavbarContainer = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 3rem;
-  background: transparent; /* Transparent background */
+  background: ${props => props.isScrolled ? '#ffffff' : 'transparent'};
+  transition: background-color 0.3s ease;
+  box-shadow: ${props => props.isScrolled ? '0 2px 4px rgba(0,0,0,0.1)' : 'none'};
   z-index: 1000;
 `;
 
@@ -37,9 +43,21 @@ const Spacer = styled.div`
 
 const Navbar: React.FC = () => {
   const location = useLocation(); // Get the current path
+  const [isScrolled, setIsScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      // Check if we've scrolled past the initial viewport
+      const scrolled = window.scrollY > 100;
+      setIsScrolled(scrolled);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <NavbarContainer>
+    <NavbarContainer isScrolled={isScrolled}>
       <LogoImage src={Images.WinpowerLogoImage} alt="Logo" />
       <Spacer />
       <NavLinks>

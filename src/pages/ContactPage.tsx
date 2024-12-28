@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { MdLocationOn, MdEmail, MdPhone } from 'react-icons/md';
 import { FaFacebook } from 'react-icons/fa';
-import { HeaderSpacer } from '../components/GenericPageComponents';
 import PageTitleSection from '../components/PageTitleSection';
 
 const ContactContainer = styled.div`
@@ -11,7 +10,7 @@ const ContactContainer = styled.div`
   align-items: center;
   padding: 2rem;
   min-height: 100vh;
-  background: #f8f8f8;
+  background: #ffffff;
 `;
 
 const Description = styled.p`
@@ -61,7 +60,7 @@ const CardContent = styled.p`
 `;
 
 const ContactCard = styled.div`
-  background: #f8f8f8;
+  background: #f2f2f2;
   padding: 2rem;
   border-radius: 10px;
   text-align: center;
@@ -86,7 +85,6 @@ const Footer = styled.div`
   text-align: center;
   margin-top: 2rem;
   padding: 2rem;
-  background: #f8f8f8;
   width: 100%;
 `;
 
@@ -105,14 +103,23 @@ const SocialLinks = styled.div`
   }
 `;
 
+const Title = styled.h2`
+  font-size: 1.4rem;
+  color: #333;
+  text-align: center;
+  font-weight: 1000;
+  text-transform: uppercase;
+`;
+
+
 const ContactPage: React.FC = () => {
   return (
-    <div>
-      <HeaderSpacer />
+    <>
       <PageTitleSection
-        title="Contact Us"
+        title="CONTACT US"
       />
       <ContactContainer>
+        <Title>GET IN TOUCH</Title>
         <Description>For any query or details kindly contact us.</Description>
 
         <ContactGrid>
@@ -158,7 +165,7 @@ const ContactPage: React.FC = () => {
           </SocialLinks>
         </Footer>
       </ContactContainer>
-    </div>
+    </>
   );
 };
 

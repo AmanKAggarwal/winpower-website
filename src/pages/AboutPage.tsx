@@ -3,7 +3,6 @@ import styled from "styled-components";
 import PageTitleSction from "../components/PageTitleSection";
 import { UnderlinedSectionHeader } from "../components/SectionHeaders";
 import { 
-  HeaderSpacer,
   MaxWidthWrapper, 
   SectionContainer,
   FlexContainer, 
@@ -168,7 +167,6 @@ const CustomerFirstSection: React.FC = () => {
 const AboutUsPage: React.FC = () => {
   return (
     <div>
-      <HeaderSpacer />
       <PageTitleSction
         title="About Us"
         leftImagePath={Images.AboutUsTitleImage}

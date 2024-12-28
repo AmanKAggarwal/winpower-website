@@ -2,7 +2,6 @@ import React from "react";
 
 import { SectionHeader } from "../components/SectionHeaders";
 import { 
-    HeaderSpacer,
     MaxWidthWrapper, 
     SectionContainer,
     FlexContainer, 
@@ -43,7 +42,6 @@ const PlanningExecutionResultsSection: React.FC = () => {
 const ServiceSubstationPage: React.FC = () => {
   return (
     <div>
-      <HeaderSpacer />
       <PageTitleSection
         title="Substation, Transmission & Distribution Line"
         leftImagePath={Images.Powerline2Image}
