@@ -2,11 +2,12 @@ import { RouteElement } from "./types/RouteElement";
 
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
-import DummyPage from "./pages/DummyPage";
+// import DummyPage from "./pages/DummyPage";
 import ServiceSubstationPage from "./pages/ServiceSubstationPage";
 import ServiceDesigningPage from "./pages/ServiceDesigningPage";
 import ServiceSurveyInspectionPage from "./pages/ServiceSurveyInspectionPage";
-import GalleryPage from './pages/GalleryPage'
+import GalleryPage from './pages/GalleryPage';
+import ContactPage from './pages/ContactPage';
 
 export const ROUTES: RouteElement[] = [
   {
@@ -41,11 +42,11 @@ export const ROUTES: RouteElement[] = [
       }
     ],
   },
-  {
-    path: "/projects",
-    title: "Projects",
-    component: <DummyPage />,
-  },
+  // {
+  //   path: "/projects",
+  //   title: "Projects",
+  //   component: <DummyPage />,
+  // },
   {
     path: "/gallery",
     title: "Gallery",
@@ -54,6 +55,6 @@ export const ROUTES: RouteElement[] = [
   {
     path: "/contact-us",
     title: "Contact Us",
-    component: <DummyPage />,
+    component: <ContactPage />,
   },
 ];

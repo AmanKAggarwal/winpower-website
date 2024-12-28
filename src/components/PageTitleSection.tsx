@@ -6,7 +6,7 @@ const SectionContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f6f5f5;
+  background-color: #e6e3e3;
   text-align: center;
   height: 17rem;
 `;
