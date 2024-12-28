@@ -5,6 +5,12 @@ import { RouteElement } from "../types/RouteElement";
 import { fadeIn, slideInRight } from "../styles/animations";
 
 // Styled components
+/**
+ * Styled component for a navigation link.
+ * 
+ * @param {boolean} active - Whether the link is active.
+ * @param {boolean} hasChildren - Whether the link has children.
+ */
 const NavLink = styled.li<{ active?: boolean; hasChildren?: boolean }>`
   font-size: 1rem;
   color: ${(props) => (props.active ? "#e95d22" : "#000")};
@@ -16,6 +22,7 @@ const NavLink = styled.li<{ active?: boolean; hasChildren?: boolean }>`
   padding: 0.5rem 0;
   gap: 0.4rem;
 
+  // Underline animation for non-dropdown items
   &::after {
     content: '';
     position: absolute;
@@ -36,6 +43,7 @@ const NavLink = styled.li<{ active?: boolean; hasChildren?: boolean }>`
     }
   }
 
+  // Link styles
   a {
     text-decoration: none;
     color: inherit;
@@ -43,6 +51,7 @@ const NavLink = styled.li<{ active?: boolean; hasChildren?: boolean }>`
     order: 1;
   }
 
+  // Dropdown arrow styles for desktop
   ${(props) =>
     props.hasChildren &&
     `
@@ -70,6 +79,7 @@ const NavLink = styled.li<{ active?: boolean; hasChildren?: boolean }>`
       }
     `}
 
+  // Mobile styles
   @media (max-width: 768px) {
     font-size: 1.1rem;
     padding: 0.5rem 0;
@@ -84,6 +94,7 @@ const NavLink = styled.li<{ active?: boolean; hasChildren?: boolean }>`
       transform: translateX(10px);
     }
 
+    // Mobile dropdown arrow styles
     ${props => props.hasChildren && `
       &::before {
         display: none;
@@ -110,6 +121,9 @@ const NavLink = styled.li<{ active?: boolean; hasChildren?: boolean }>`
   }
 `;
 
+/**
+ * Styled component for a dropdown menu.
+ */
 const DropdownMenu = styled.ul`
   display: inherit;
   position: absolute;
@@ -170,6 +184,7 @@ const DropdownMenu = styled.ul`
     }
   }
 
+  // Mobile styles
   @media (max-width: 768px) {
     position: static;
     transform: none;
@@ -200,30 +215,42 @@ const DropdownMenu = styled.ul`
   }
 `;
 
+/**
+ * Styled component for a dropdown menu container.
+ */
 const DropdownMenuContainer = styled.div`
-    display: none; /* Hide the dropdown menu by default */
+  display: none; /* Hide the dropdown menu by default */
 
-    @media (max-width: 768px) {
-      &:hover {
-        display: block;
-      }
+  // Mobile styles
+  @media (max-width: 768px) {
+    &:hover {
+      display: block;
     }
+  }
 `;
 
+/**
+ * Styled component for a navigation link container.
+ */
 const NavLinkContainer = styled.div`
   position: relative; /* Ensure dropdown is positioned relative to the parent */
   display: inline-block; /* Needed for dropdown alignment */
 
+  // Mobile styles
   @media (max-width: 768px) {
     width: 100%;
   }
 `;
 
+/**
+ * Styled component for a navigation link with a dropdown.
+ */
 const NavLinkWithDropdown = styled(NavLinkContainer)`
   &:hover ${DropdownMenuContainer} {
     display: block; /* Show dropdown menu on hover */
   }
 
+  // Mobile styles
   @media (max-width: 768px) {
     ${DropdownMenuContainer} {
       display: block;
@@ -232,6 +259,12 @@ const NavLinkWithDropdown = styled(NavLinkContainer)`
   }
 `;
 
+/**
+ * NavbarElement component.
+ * 
+ * @param {RouteElement} route - The route element.
+ * @param {boolean} active - Whether the route is active.
+ */
 const NavbarElement: React.FC<{ route: RouteElement; active: boolean }> = ({ route, active }) => {
   if (route.children && route.children.length > 0) {
     return (
@@ -240,13 +273,13 @@ const NavbarElement: React.FC<{ route: RouteElement; active: boolean }> = ({ rou
           <Link to={route.path}>{route.title}</Link>
         </NavLink>
         <DropdownMenuContainer>
-            <DropdownMenu>
-                {route.children.map((child) => (
-                    <li key={child.path}>
-                    <Link to={child.path}>{child.title}</Link>
-                    </li>
-                ))}
-            </DropdownMenu>
+          <DropdownMenu>
+            {route.children.map((child) => (
+              <li key={child.path}>
+                <Link to={child.path}>{child.title}</Link>
+              </li>
+            ))}
+          </DropdownMenu>
         </DropdownMenuContainer>
       </NavLinkWithDropdown>
     );

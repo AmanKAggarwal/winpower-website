@@ -67,84 +67,68 @@ const NavLinks = styled.ul<{ $isOpen: boolean }>`
   }
 `;
 
-const Spacer = styled.div`
-  flex-grow: 1;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-
 const HamburgerButton = styled.button`
   display: none;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.8rem;
-  color: #e95d22;
-  font-size: 2rem;
-  width: 48px;
-  height: 48px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-
-  @media (max-width: 768px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  padding: 0.5rem;
+  transition: transform 0.3s ease;
 
   &:hover {
-    background: rgba(233, 93, 34, 0.1);
-    transform: scale(1.05);
+    transform: scale(1.1);
   }
 
-  &:active {
-    transform: scale(0.95);
+  @media (max-width: 768px) {
+    display: block;
   }
 
-  &:focus {
-    outline: none;
+  div {
+    width: 25px;
+    height: 3px;
+    background-color: #000;
+    margin: 4px 0;
+    transition: all 0.3s ease;
   }
 `;
 
 const Navbar: React.FC = () => {
-  const location = useLocation(); 
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
-  React.useEffect(() => {
+  // Handle scroll effect
+  useEffect(() => {
     const handleScroll = () => {
-      // Check if we've scrolled past the initial viewport
-      const scrolled = window.scrollY > 100;
-      setIsScrolled(scrolled);
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when route changes
-  React.useEffect(() => {
+  // Close mobile menu on route change
+  useEffect(() => {
     setIsOpen(false);
   }, [location]);
 
   return (
     <NavbarContainer isScrolled={isScrolled}>
-      <LogoImage src={Images.WinpowerLogoImage} alt="Logo" />
-      <Spacer />
+      <LogoImage src={Images.WinpowerLogoImage} alt="Winpower Logo" />
       <HamburgerButton onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? '×' : '☰'}
+        <div />
+        <div />
+        <div />
       </HamburgerButton>
       <NavLinks $isOpen={isOpen}>
-      {ROUTES.map((route) => (
-        <NavbarElement
-          key={route.path}
-          route={route}
-          active={location.pathname === route.path}
-        />
-      ))}
-    </NavLinks>
+        {ROUTES.map((route) => (
+          <NavbarElement
+            key={route.path}
+            route={route}
+            active={location.pathname === route.path}
+          />
+        ))}
+      </NavLinks>
     </NavbarContainer>
   );
 };
