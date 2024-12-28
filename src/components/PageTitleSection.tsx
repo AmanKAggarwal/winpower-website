@@ -4,24 +4,19 @@ import styled from "styled-components";
 // Styled Components
 const SectionContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  padding: 2rem 1rem;
   background-color: #f6f5f5;
-  position: relative;
   text-align: center;
   height: 17rem;
-  gap: 4rem;
 `;
 
 const ImageContainer = styled.div<{ side: "left" | "right" }>`
   flex: 1;
-  display: ${({ side }) => (side === "left" || side === "right" ? "flex" : "none")};
-  justify-content: ${({ side }) => (side === "left" ? "flex-end" : "flex-start")};
-  padding: 1rem;
 
   img {
-    max-width: 200px; /* Adjust as needed */
+    max-height: 30vh;
+    max-width: 30vw; /* Adjust as needed */
     filter: brightness(0) contrast(1); /* Turns image black */
     opacity: 0.3; /* Makes it appear gray */
   }
@@ -32,8 +27,10 @@ const Title = styled.h2`
   font-size: 3rem;
   color: #e95d22;
   text-transform: uppercase;
+  white-space: nowrap; /* Prevents text from wrapping to the next line */
+  text-overflow: ellipsis; /* Adds an ellipsis (...) if text overflows */
+  text-align: center; /* Optional: Centers the text */
 `;
-
 const PageTitleSection: React.FC<{
   title: string;
   leftImagePath?: string;

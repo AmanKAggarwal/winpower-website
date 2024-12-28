@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import { ROUTES } from "../Routes"; // Ensure correct path
-import logo from "../assets/winpowerlogo.png"; // Import logo dynamically
+import { Images } from "../data/images";
 import NavbarElement from "./NavbarElement";
 // Styled components
 const NavbarContainer = styled.nav`
@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
 
   return (
     <NavbarContainer>
-      <LogoImage src={logo} alt="Logo" />
+      <LogoImage src={Images.WinpowerLogoImage} alt="Logo" />
       <Spacer />
       <NavLinks>
       {ROUTES.map((route) => (
