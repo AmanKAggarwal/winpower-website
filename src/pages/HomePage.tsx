@@ -1,5 +1,5 @@
 // src/pages/HomePage.tsx
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Images } from '../data/images';
@@ -426,7 +426,7 @@ const Button = styled.button`
 
 const HomePage = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [direction, setDirection] = useState(1);
+  const [_, setDirection] = useState(1);
 
   const servicesRoutes = ROUTES.find((route) => route.title === "Services")?.children || [];
   const contactRoute = ROUTES.find((route) => route.title === "Contact Us")?.path || "/contact";
@@ -524,7 +524,7 @@ const HomePage = () => {
                 transform: `translateX(-${currentTestimonial * 100}%)`,
               }}
             >
-              {testimonials.map((testimonial, index) => (
+              {testimonials.map((testimonial, _) => (
                 <TestimonialSlide key={testimonial.id}>
                   <QuoteIcon>"</QuoteIcon>
                   <TestimonialText>
