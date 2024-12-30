@@ -18,28 +18,57 @@ const HeroSection = styled.section`
   justify-content: center;
   text-align: center;
   color: white;
+  padding: 0 20px;
 `;
 
 const HeroTitle = styled.h1`
   font-size: 4rem;
   margin-bottom: 1rem;
   max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.3;
+  color: #e95d22;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    max-width: 100%;
+    line-height: 1.4;
+  }
 
   span {
-    color: #e95d22;
+    display: block;
+    margin: 0.2em 0;
+  }
+
+  .amp {
+    font-size: 0.9em;
+    margin: 0.1em 0;
   }
 `;
 
 const HeroSubtitle = styled.p`
   font-size: 1.5rem;
   max-width: 600px;
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem auto;
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+    max-width: 100%;
+  }
 `;
 
 const ProjectsSection = styled.section`
   background: #f8f9fa;
-  padding: 5rem 2rem;
+  padding: 5rem 1rem;
   text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 3rem 1rem;
+  }
 `;
 
 const ProjectGrid = styled.div`
@@ -49,9 +78,15 @@ const ProjectGrid = styled.div`
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+  padding: 0 1rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 `;
 
@@ -105,6 +140,10 @@ const ServicesGrid = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
 `;
 
 const ServiceCard = styled.div`
@@ -153,6 +192,10 @@ const TestimonialsSection = styled.section`
   text-align: center;
   position: relative;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    padding: 3rem 1rem;
+  }
 `;
 
 const TestimonialWrapper = styled.div`
@@ -315,6 +358,10 @@ const AboutSection = styled.section`
     font-size: 1.1rem;
     opacity: 0.8;
   }
+
+  @media (max-width: 768px) {
+    padding: 3rem 1rem;
+  }
 `;
 
 const DiscussSection = styled(Section)`
@@ -333,6 +380,10 @@ const DiscussSection = styled(Section)`
     right: 0;
     bottom: 0;
     background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+  }
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
   }
 `;
 
@@ -472,8 +523,10 @@ const HomePage = () => {
     <>
       <HeroSection>
         <HeroTitle>
-          BUILDING <span>FOUNDATION</span><br />
-          FOR A BETTER FUTURE
+          BUILDING
+          <span>FOUNDATION</span>
+          <span className="amp">&</span>
+          <span>FOR A BETTER FUTURE</span>
         </HeroTitle>
         <HeroSubtitle>
           Our objective is to bridge the gap of sustainable development worldwide.

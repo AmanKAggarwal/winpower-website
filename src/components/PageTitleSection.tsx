@@ -3,70 +3,89 @@ import styled from "styled-components";
 
 // Styled Components
 const SectionContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  position: relative;
   background-color: #e6e3e3;
-  text-align: center;
-  min-height: 17rem;
-  padding: 120px 0 2rem 0;
+  max-height: 400px;
+  padding: 120px 0 40px 0; /* 120px top padding to clear navbar */
   margin-top: 0;
   width: 100%;
+  overflow: hidden;
 `;
 
 const ContentWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
+  position: relative;
+  max-width: 1400px;
   width: 100%;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  gap: 2rem;
   padding: 0 2rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 `;
 
 const ImageContainer = styled.div<{ side: "left" | "right" }>`
-  width: 25%;
+  width: 100%;
   display: flex;
-  justify-content: ${props => props.side === "left" ? "flex-start" : "flex-end"};
+  justify-content: center;
   align-items: center;
 
   img {
-    max-height: 40vh;
-    width: 100%;
+    width: auto;
+    height: auto;
+    max-height: 240px; /* Adjusted to account for the increased padding */
+    max-width: 100%;
     filter: brightness(0) contrast(1);
     opacity: 0.3;
     object-fit: contain;
   }
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 const Title = styled.h2`
-  width: 100%;
   font-size: 3rem;
   color: #e95d22;
   text-transform: uppercase;
   text-align: center;
-  padding: 0 1rem;
+  line-height: 1.3;
+  margin: 0;
+
+  @media (max-width: 1024px) {
+    font-size: 2rem;
+    line-height: 1.4;
+    padding: 0 1rem;
+  }
 `;
 
-const PageTitleSection: React.FC<{
+interface PageTitleSectionProps {
   title: string;
-  leftImagePath?: string;
-  rightImagePath?: string;
-}> = ({ title, leftImagePath, rightImagePath }) => {
+  leftImagePath: string;
+  rightImagePath: string;
+}
+
+const PageTitleSection: React.FC<PageTitleSectionProps> = ({
+  title,
+  leftImagePath,
+  rightImagePath,
+}) => {
   return (
     <SectionContainer>
       <ContentWrapper>
-        {leftImagePath && (
-          <ImageContainer side="left">
-            <img src={leftImagePath} alt="Left shadow" />
-          </ImageContainer>
-        )}
+        <ImageContainer side="left">
+          <img src={leftImagePath} alt="Left decoration" />
+        </ImageContainer>
         <Title>{title}</Title>
-        {rightImagePath && (
-          <ImageContainer side="right">
-            <img src={rightImagePath} alt="Right shadow" />
-          </ImageContainer>
-        )}
+        <ImageContainer side="right">
+          <img src={rightImagePath} alt="Right decoration" />
+        </ImageContainer>
       </ContentWrapper>
     </SectionContainer>
   );
