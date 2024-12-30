@@ -67,8 +67,8 @@ const Title = styled.h2`
 
 interface PageTitleSectionProps {
   title: string;
-  leftImagePath: string;
-  rightImagePath: string;
+  leftImagePath?: string;
+  rightImagePath?: string;
 }
 
 const PageTitleSection: React.FC<PageTitleSectionProps> = ({
@@ -79,13 +79,17 @@ const PageTitleSection: React.FC<PageTitleSectionProps> = ({
   return (
     <SectionContainer>
       <ContentWrapper>
-        <ImageContainer side="left">
-          <img src={leftImagePath} alt="Left decoration" />
-        </ImageContainer>
+        {leftImagePath && (
+          <ImageContainer side="left">
+            <img src={leftImagePath} alt="Left decoration" />
+          </ImageContainer>
+        )}
         <Title>{title}</Title>
-        <ImageContainer side="right">
-          <img src={rightImagePath} alt="Right decoration" />
-        </ImageContainer>
+        {rightImagePath && (
+          <ImageContainer side="right">
+            <img src={rightImagePath} alt="Right decoration" />
+          </ImageContainer>
+        )}
       </ContentWrapper>
     </SectionContainer>
   );
