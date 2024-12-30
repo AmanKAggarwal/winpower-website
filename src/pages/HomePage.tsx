@@ -1,4 +1,5 @@
 // src/pages/HomePage.tsx
+// test comment to verify deployment trigger
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
