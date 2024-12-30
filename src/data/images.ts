@@ -17,6 +17,7 @@ import reactSvg from '../assets/react.svg';
 import quotationMarks from '../assets/quotationmarks.png';
 import genericConstruction from '../assets/genericconstruction.png';
 import surveyInspectionHeader from '../assets/surveyinspectionheader.png';
+import powerGridBannerHome from '../assets/powergridbannerhome.png';
 
 // Export individual images
 export {
@@ -38,6 +39,7 @@ export {
   quotationMarks as QuotationMarksImage,
   genericConstruction as GenericConstructionImage,
   surveyInspectionHeader as SurveyInspectionHeaderImage,
+  powerGridBannerHome as PowerGridBannerHomeImage,
 };
 
 // Export as a single object
@@ -60,6 +62,7 @@ export const Images = {
   QuotationMarksImage: quotationMarks,
   GenericConstructionImage: genericConstruction,
   SurveyInspectionHeaderImage: surveyInspectionHeader,
+  PowerGridBannerHomeImage: powerGridBannerHome,
 } as const;
 
 // Export type for type safety

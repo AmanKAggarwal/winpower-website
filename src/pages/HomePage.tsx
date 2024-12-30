@@ -10,54 +10,55 @@ import { ROUTES } from "../Routes";
 const HeroSection = styled.section`
   position: relative;
   height: 80vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${Images.PowerlineImage});
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${Images.PowerGridBannerHomeImage});
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
   padding: 0 20px;
 `;
 
-const HeroTitle = styled.h1`
-  font-size: 4rem;
-  margin-bottom: 1rem;
-  max-width: 800px;
+const HeroContent = styled.div`
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+`;
+
+const HeroTitle = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  gap: 0.5rem;
+  max-width: 800px;
+`;
+
+const TitleLine = styled.h1`
+  font-size: 4rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin: 0;
+  color: white;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  line-height: 1.3;
-  color: #e95d22;
-
+  
   @media (max-width: 768px) {
-    font-size: 2rem;
-    max-width: 100%;
-    line-height: 1.4;
+    font-size: 2.5rem;
   }
+`;
 
-  span {
-    display: block;
-    margin: 0.2em 0;
-  }
-
-  .amp {
-    font-size: 0.9em;
-    margin: 0.1em 0;
-  }
+const ColoredSpan = styled.span`
+  color: #e95d22;
 `;
 
 const HeroSubtitle = styled.p`
   font-size: 1.5rem;
+  line-height: 1.5;
+  margin: 1.5rem 0 0 0;
+  color: white;
   max-width: 600px;
-  margin: 0 auto 2rem auto;
 
   @media (max-width: 768px) {
     font-size: 1.2rem;
-    max-width: 100%;
   }
 `;
 
@@ -522,15 +523,19 @@ const HomePage = () => {
   return (
     <>
       <HeroSection>
-        <HeroTitle>
-          BUILDING
-          <span>FOUNDATION</span>
-          <span className="amp">&</span>
-          <span>FOR A BETTER FUTURE</span>
-        </HeroTitle>
-        <HeroSubtitle>
-          Our objective is to bridge the gap of sustainable development worldwide.
-        </HeroSubtitle>
+        <HeroContent>
+          <HeroTitle>
+            <TitleLine>
+              BUILDING <ColoredSpan>FOUNDATION</ColoredSpan>
+            </TitleLine>
+            <TitleLine>
+              FOR A BETTER FUTURE
+            </TitleLine>
+            <HeroSubtitle>
+              Our objective is to bridge the gap of sustainable development worldwide.
+            </HeroSubtitle>
+          </HeroTitle>
+        </HeroContent>
       </HeroSection>
 
       <ProjectsSection>

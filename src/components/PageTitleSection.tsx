@@ -12,13 +12,13 @@ const SectionContainer = styled.div`
   overflow: hidden;
 `;
 
-const ContentWrapper = styled.div`
+const ContentWrapper = styled.div<{ hasImages: boolean }>`
   position: relative;
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: ${props => props.hasImages ? '1fr 2fr 1fr' : '1fr'};
   align-items: center;
   gap: 2rem;
   padding: 0 2rem;
@@ -76,9 +76,11 @@ const PageTitleSection: React.FC<PageTitleSectionProps> = ({
   leftImagePath,
   rightImagePath,
 }) => {
+  const hasImages = Boolean(leftImagePath) || Boolean(rightImagePath);
+  
   return (
     <SectionContainer>
-      <ContentWrapper>
+      <ContentWrapper hasImages={hasImages}>
         {leftImagePath && (
           <ImageContainer side="left">
             <img src={leftImagePath} alt="Left decoration" />
