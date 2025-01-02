@@ -18,6 +18,11 @@ const HeroSection = styled.section`
   display: flex;
   align-items: center;
   padding: 0 20px;
+  margin-top: -60px; /* Offset the PageWrapper padding */
+
+  @media (max-width: 768px) {
+    margin-top: -55px; /* Offset the mobile PageWrapper padding */
+  }
 `;
 
 const HeroContent = styled.div`

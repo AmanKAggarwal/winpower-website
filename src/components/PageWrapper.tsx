@@ -7,12 +7,29 @@ interface PageWrapperProps {
   children: React.ReactNode;
 }
 
-const MainContent = styled.main`
-  padding-top: 80px; /* Reduced from 120px to match smaller navbar */
+const PageContainer = styled.div`
+  width: 100%;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px; /* Height of navbar (40px) + padding (20px) */
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding-top: 55px; /* Adjusted for mobile navbar height */
+  }
+`;
+
+const MainContent = styled.main`
+  min-height: 100vh;
+  width: 100%;
 `;
 
 export const PageWrapper: React.FC<PageWrapperProps> = ({ title, children }) => {
   usePageTitle(title);
-  return <MainContent>{children}</MainContent>;
+  return (
+    <PageContainer>
+      <MainContent>{children}</MainContent>
+    </PageContainer>
+  );
 };

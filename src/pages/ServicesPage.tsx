@@ -22,7 +22,7 @@ const Container = styled.div`
 
 const Content = styled.div`
   flex: 1;
-  padding: 4rem 2rem;
+  padding: 2rem;
   background: #fff;
 `;
 
@@ -30,14 +30,13 @@ const ServicesContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  padding: 2rem;
-  max-width: 100%;
-  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    padding: 1rem;
     gap: 1rem;
+    padding: 1rem;
   }
 `;
 
