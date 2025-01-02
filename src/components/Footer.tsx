@@ -229,7 +229,7 @@ const CopyrightSection: React.FC = () => {
         reserved.
       </CopyrightText>
       <DesignCredit>
-        Design by Brand Imprint
+        Design Inspired by Brand Imprint
       </DesignCredit>
     </CopyrightWrapper>
   );
