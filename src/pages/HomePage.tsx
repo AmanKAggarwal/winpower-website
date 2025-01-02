@@ -113,39 +113,29 @@ const ProjectCard = styled.div`
 `;
 
 const Section = styled.section<{ $dark?: boolean }>`
-  padding: 5rem 2rem;
-  background: ${props => props.$dark ? '#1a1a1a' : '#fff'};
-  color: ${props => props.$dark ? '#fff' : '#333'};
+  padding: 5rem 1rem;
+  background: ${props => props.$dark ? '#000000' : '#ffffff'};
+  color: ${props => props.$dark ? '#ffffff' : '#000000'};
 `;
 
 const SectionTitle = styled.h2<{ $dark?: boolean }>`
-  text-align: center;
   font-size: 2.5rem;
+  text-align: center;
   margin-bottom: 3rem;
-  color: ${props => props.$dark ? '#fff' : '#333'};
-  position: relative;
-  
-  &:after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 4px;
-    background: #e95d22;
-    margin: 1rem auto 0;
-    border-radius: 2px;
-  }
+  color: ${props => props.$dark ? '#ffffff' : '#000000'};
 `;
 
 const WhoWeAreContent = styled.div<{ $dark?: boolean }>`
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 2rem;
   text-align: center;
-  line-height: 1.8;
-  font-size: 1.1rem;
-  color: ${props => props.$dark ? '#f5f5f5' : '#333'};
 
   p {
-    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: ${props => props.$dark ? '#ffffff' : '#000000'};
+    margin: 0;
   }
 `;
 
@@ -163,62 +153,72 @@ const ServicesGrid = styled.div`
 `;
 
 const ServiceCard = styled.div`
-  background: white;
-  padding: 2.5rem;
-  border-radius: 12px;
+  background-color: #e95d22;
+  color: white;
+  padding: 2rem;
+  border-radius: 10px;
   text-align: center;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-  border: 1px solid #eee;
-  position: relative;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   &:hover {
     transform: translateY(-5px);
-    border-color: #e95d22;
-    box-shadow: 0 12px 48px rgba(233, 93, 34, 0.15);
+  }
+
+  h3 {
+    color: white;
+    margin: 1rem 0;
+    font-size: 1.5rem;
   }
 
   img {
     width: 140px;
     height: 140px;
-    object-fit: cover;
-    margin-bottom: 2rem;
+    object-fit: contain;
+    margin-bottom: 1rem;
     border-radius: 10px;
-    border: 4px solid #f5f5f5;
-    transition: all 0.3s ease;
+    background-color: white;
+    padding: 1rem;
+    transition: transform 0.3s ease;
   }
 
   &:hover img {
-    border-color: #e95d22;
     transform: scale(1.05);
   }
+`;
 
-  h3 {
-    color: #333;
-    margin: 1rem 0;
-    font-size: 1.4rem;
-    font-weight: 500;
+const LearnMoreButton = styled(Link)`
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border: 2px solid white;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: white;
+    color: #e95d22;
   }
 `;
 
 const TestimonialsSection = styled.section`
-  background: #fff;
-  padding: 5rem 2rem;
-  text-align: center;
+  background-color: #ffffff;
+  padding: 5rem 1rem;
   position: relative;
   overflow: hidden;
-
-  @media (max-width: 768px) {
-    padding: 3rem 1rem;
-  }
 `;
 
 const TestimonialWrapper = styled.div`
   position: relative;
-  max-width: 1000px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 0 3rem;
+  padding: 0 6rem;
 
   @media (max-width: 768px) {
     padding: 0 1rem;
@@ -229,7 +229,7 @@ const TestimonialContainer = styled.div`
   overflow: hidden;
   width: 100%;
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 2px solid #000000;
 `;
 
 const TestimonialSlider = styled.div`
@@ -242,8 +242,9 @@ const TestimonialSlide = styled.div`
   min-width: 100%;
   padding: 3rem 2rem;
   text-align: center;
-  background: #000;
-  color: white;
+  background: #f7f7f7;
+  border-radius: 10px;
+  margin: 0;
 
   @media (max-width: 768px) {
     padding: 2rem 1rem;
@@ -254,7 +255,7 @@ const TestimonialText = styled.p`
   font-size: 1.2rem;
   line-height: 1.8;
   margin: 1.5rem auto;
-  color: white;
+  color: #000000;
   max-width: 800px;
 
   @media (max-width: 768px) {
@@ -266,69 +267,58 @@ const TestimonialText = styled.p`
 
 const QuoteIcon = styled.div`
   font-size: 4rem;
-  color: #e95d22;
-  height: 40px;
-  line-height: 1;
-  margin-bottom: 1rem;
-
-  @media (max-width: 768px) {
-    font-size: 3rem;
-    height: 30px;
-    margin-bottom: 0.5rem;
-  }
+  color: #000000;
+  opacity: 0.2;
+  font-family: Georgia, serif;
+  margin-bottom: -2rem;
 `;
 
 const TestimonialAuthor = styled.div`
+  text-align: center;
+  margin-top: 2rem;
+
   h4 {
-    color: #e95d22;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  p {
-    color: #ddd;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
+    color: #000000;
+    margin: 0;
+    font-weight: bold;
   }
 
-  @media (max-width: 768px) {
-    h4 {
-      font-size: 1rem;
-    }
-    p {
-      font-size: 0.8rem;
-    }
+  p {
+    font-size: 1rem;
+    color: #000000;
+    margin: 0.5rem 0 0;
   }
 `;
 
 const ArrowButton = styled.button<{ $direction: 'left' | 'right' }>`
+  background: none;
+  border: none;
+  color: #e95d22;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 1rem;
+  transition: transform 0.3s ease;
   position: absolute;
   top: 50%;
-  ${props => props.$direction === 'left' ? 'left: 0;' : 'right: 0;'}
   transform: translateY(-50%);
-  background: white;
-  border: 2px solid #e95d22;
-  color: #e95d22;
-  width: 44px;
-  height: 44px;
+  ${props => props.$direction === 'left' ? 'left: -4rem;' : 'right: -4rem;'}
+  z-index: 2;
+  background-color: white;
   border-radius: 50%;
-  cursor: pointer;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
-  z-index: 2;
-  font-size: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e95d22;
 
   &:hover {
-    background: #e95d22;
-    color: white;
+    transform: translateY(-50%) scale(1.1);
   }
 
   @media (max-width: 768px) {
-    width: 36px;
-    height: 36px;
-    font-size: 1.2rem;
+    display: none;
   }
 `;
 
@@ -337,25 +327,20 @@ const DotContainer = styled.div`
   justify-content: center;
   gap: 0.5rem;
   margin-top: 2rem;
-
-  @media (max-width: 768px) {
-    margin-top: 1rem;
-    gap: 0.3rem;
-  }
 `;
 
 const Dot = styled.button<{ $active: boolean }>`
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   border: none;
-  background-color: ${props => props.$active ? '#e95d22' : '#ddd'};
+  background-color: ${props => props.$active ? '#e95d22' : 'rgba(233, 93, 34, 0.3)'};
   cursor: pointer;
   transition: all 0.3s ease;
+  padding: 0;
 
-  @media (max-width: 768px) {
-    width: 8px;
-    height: 8px;
+  &:hover {
+    background-color: ${props => props.$active ? '#e95d22' : 'rgba(233, 93, 34, 0.5)'};
   }
 `;
 
@@ -492,161 +477,157 @@ const Button = styled.button`
   }
 `;
 
+const HomePageContainer = styled.div`
+  width: 100%;
+  min-height: 100vh;
+`;
+
+const MainContent = styled.main`
+  width: 100%;
+`;
+
 const HomePage: React.FC = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [_, setDirection] = useState(1);
-
-  const servicesRoutes = ROUTES.find((route) => route.title === "Services")?.children || [];
-  const contactRoute = ROUTES.find((route) => route.title === "Contact Us")?.path || "/contact";
+  const [direction, setDirection] = useState(1);
+  const contactRoute = ROUTES.find(route => route.path === '/contact-us')?.path || '#';
 
   useEffect(() => {
-    const timer = setInterval(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
       setDirection(1);
-      setCurrentTestimonial((prev) => 
-        prev === testimonials.length - 1 ? 0 : prev + 1
-      );
     }, 5000);
 
-    return () => clearInterval(timer);
+    return () => clearInterval(interval);
   }, []);
 
-  const handlePrevious = () => {
+  const handlePrevTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
     setDirection(-1);
-    setCurrentTestimonial((prev) => 
-      prev === 0 ? testimonials.length - 1 : prev - 1
-    );
   };
 
-  const handleNext = () => {
+  const handleNextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
     setDirection(1);
-    setCurrentTestimonial((prev) => 
-      prev === testimonials.length - 1 ? 0 : prev + 1
-    );
-  };
-
-  const handleDotClick = (index: number) => {
-    setDirection(index > currentTestimonial ? 1 : -1);
-    setCurrentTestimonial(index);
-  };
-
-  const serviceImages = {
-    "/services/substations-transmission-distribution-line": Images.SubstationHQImage,
-    "/services/designing": Images.DesignBuildingImage,
-    "/services/survey-inspection": Images.SurveyInspectionImage,
   };
 
   return (
-    <>
-      <HeroSection>
-        <HeroContent>
-          <HeroTitle>
-            <TitleLine>
-              BUILDING <ColoredSpan>FOUNDATION</ColoredSpan>
-            </TitleLine>
-            <TitleLine>
-              FOR A BETTER FUTURE
-            </TitleLine>
+    <HomePageContainer>
+      <MainContent>
+        <HeroSection>
+          <HeroContent>
+            <HeroTitle>
+              <TitleLine>
+                EMPOWERING THE FUTURE
+              </TitleLine>
+              <TitleLine>
+                WITH <ColoredSpan>SUSTAINABLE</ColoredSpan>
+              </TitleLine>
+              <TitleLine>
+                <ColoredSpan>POWER SOLUTIONS</ColoredSpan>
+              </TitleLine>
+            </HeroTitle>
             <HeroSubtitle>
-              Our objective is to bridge the gap of sustainable development worldwide.
+              Delivering innovative electrical solutions for a brighter, more sustainable tomorrow
             </HeroSubtitle>
-          </HeroTitle>
-        </HeroContent>
-      </HeroSection>
+          </HeroContent>
+        </HeroSection>
 
-      <ProjectsSection>
-        <SectionTitle>PROJECT HIGHLIGHTS</SectionTitle>
-        <ProjectGrid>
-          <ProjectCard>
-            <img src={Images.SubstationHQImage} alt="Substation HQ" />
-          </ProjectCard>
-          <ProjectCard>
-            <img src={Images.Powerline2Image} alt="Transmission Line" />
-          </ProjectCard>
-          <ProjectCard>
-            <img src={Images.CraneImage} alt="Construction" />
-          </ProjectCard>
-        </ProjectGrid>
-      </ProjectsSection>
 
-      <Section $dark>
-        <SectionTitle $dark>WHAT WE OFFER</SectionTitle>
-        <ServicesGrid>
-          {servicesRoutes.map((service) => (
-            <ServiceCard key={service.path}>
-              <img 
-                src={serviceImages[service.path as keyof typeof serviceImages]} 
-                alt={service.title}
-              />
-              <h3>{service.title}</h3>
-              <Link to={service.path}>
-                <Button>Learn More</Button>
-              </Link>
-            </ServiceCard>
-          ))}
-        </ServicesGrid>
-      </Section>
+        <Section style={{ background: '#f8f9fa' }}>
+          <SectionTitle>WHO WE ARE</SectionTitle>
+          <WhoWeAreContent>
+            <p>
+              Win Power Infra Pvt. Ltd. is a pillar of Singhi group of companies, and a diversified company established in 1993 with an objective to bridge the gap of sustainable development of power in Rural & semi urban areas in North Eastern region. The North eastern region is one of typical & remote terrain where we are successfully delivering our goal and brought smile to millions of people in the hinterland of the country.
+            </p>
+          </WhoWeAreContent>
+        </Section>
 
-      <TestimonialsSection>
-        <SectionTitle>WHAT THEY'RE SAYING</SectionTitle>
-        <TestimonialWrapper>
-          <ArrowButton $direction="left" onClick={handlePrevious}>
-            &#8592;
-          </ArrowButton>
-          <TestimonialContainer>
-            <TestimonialSlider
-              style={{
-                transform: `translateX(-${currentTestimonial * 100}%)`,
-              }}
-            >
-              {testimonials.map((testimonial, _) => (
-                <TestimonialSlide key={testimonial.id}>
-                  <QuoteIcon>"</QuoteIcon>
-                  <TestimonialText>
-                    {testimonial.text}
-                  </TestimonialText>
-                  <TestimonialAuthor>
-                    <h4>{testimonial.author}</h4>
-                    <p>{testimonial.position}</p>
-                  </TestimonialAuthor>
-                </TestimonialSlide>
-              ))}
-            </TestimonialSlider>
-          </TestimonialContainer>
-          <ArrowButton $direction="right" onClick={handleNext}>
-            &#8594;
-          </ArrowButton>
-          <DotContainer>
-            {testimonials.map((_, index) => (
-              <Dot
-                key={index}
-                $active={currentTestimonial === index}
-                onClick={() => handleDotClick(index)}
-              />
+        <Section>
+          <SectionTitle>WHAT WE OFFER</SectionTitle>
+          <ServicesGrid>
+            {ROUTES.find((route) => route.title === "Services")?.children?.map((service) => (
+              <ServiceCard key={service.path}>
+                <img 
+                  src={service.title === "Substations, Transmission & Distribution Line" ? Images.SubstationHQImage :
+                      service.title === "Designing" ? Images.DesignBuildingImage :
+                      Images.SurveyInspectionImage}
+                  alt={service.title}
+                />
+                <h3>{service.title}</h3>
+                <LearnMoreButton to={service.path}>Learn More</LearnMoreButton>
+              </ServiceCard>
             ))}
-          </DotContainer>
-        </TestimonialWrapper>
-      </TestimonialsSection>
+          </ServicesGrid>
+        </Section>
 
-      <Section $dark>
-        <SectionTitle $dark>WHO WE ARE</SectionTitle>
-        <WhoWeAreContent $dark>
-          <p>
-          Win Power Infra Pvt. Ltd. is a pillar of Singhi group of companies, and a diversified company established in 1993 with an objective to bridge the gap of sustainable development of power in Rural & semi urban areas in North Eastern region. The North eastern region is one of typical & remote terrain where we are successfully delivering our goal and brought smile to millions of people in the hinterland of the country.
-          </p>
-        </WhoWeAreContent>
-      </Section>
+        <ProjectsSection>
+          <SectionTitle>PROJECT HIGHLIGHTS</SectionTitle>
+          <ProjectGrid>
+            <ProjectCard>
+              <img src={Images.SubstationHQImage} alt="Substation HQ" />
+            </ProjectCard>
+            <ProjectCard>
+              <img src={Images.Powerline2Image} alt="Transmission Line" />
+            </ProjectCard>
+            <ProjectCard>
+              <img src={Images.CraneImage} alt="Construction" />
+            </ProjectCard>
+          </ProjectGrid>
+        </ProjectsSection>
 
-      <DiscussSection>
-        <DiscussContent>
-          <DiscussText>
-            <h2>LET'S DISCUSS!</h2>
-            <p>Want to start your dream project? But have many doubts in your mind.</p>
-            <p>We are always here to help you. Sit back and let us take care of your project.</p>
-          </DiscussText>
-          <DiscussButton to={contactRoute}>Contact Us</DiscussButton>
-        </DiscussContent>
-      </DiscussSection>
-    </>
+        <TestimonialsSection>
+          <SectionTitle>WHAT THEY'RE SAYING</SectionTitle>
+          <TestimonialWrapper>
+            <ArrowButton $direction="left" onClick={handlePrevTestimonial}>
+              &#8592;
+            </ArrowButton>
+            <ArrowButton $direction="right" onClick={handleNextTestimonial}>
+              &#8594;
+            </ArrowButton>
+            <TestimonialContainer>
+              <TestimonialSlider
+                style={{
+                  transform: `translateX(-${currentTestimonial * 100}%)`,
+                }}
+              >
+                {testimonials.map((testimonial) => (
+                  <TestimonialSlide key={testimonial.id}>
+                    <QuoteIcon>"</QuoteIcon>
+                    <TestimonialText>
+                      {testimonial.text}
+                    </TestimonialText>
+                    <TestimonialAuthor>
+                      <h4>{testimonial.author}</h4>
+                      <p>{testimonial.position}</p>
+                    </TestimonialAuthor>
+                  </TestimonialSlide>
+                ))}
+              </TestimonialSlider>
+            </TestimonialContainer>
+            <DotContainer>
+              {testimonials.map((_, index) => (
+                <Dot
+                  key={index}
+                  $active={currentTestimonial === index}
+                  onClick={() => setCurrentTestimonial(index)}
+                />
+              ))}
+            </DotContainer>
+          </TestimonialWrapper>
+        </TestimonialsSection>
+
+        <DiscussSection>
+          <DiscussContent>
+            <DiscussText>
+              <h2>LET'S DISCUSS!</h2>
+              <p>Want to start your dream project? But have many doubts in your mind.</p>
+              <p>We are always here to help you. Sit back and let us take care of your project.</p>
+            </DiscussText>
+            <DiscussButton to={contactRoute}>Contact Us</DiscussButton>
+          </DiscussContent>
+        </DiscussSection>
+      </MainContent>
+    </HomePageContainer>
   );
 };
 

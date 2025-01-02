@@ -8,8 +8,7 @@ const ContactContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
-  min-height: 100vh;
+  padding: 2rem 2rem 0 2rem;
   background: #ffffff;
 `;
 
@@ -44,41 +43,25 @@ const Icon = styled.div`
   justify-content: center;
   color: #E85D24;
   font-size: 2.5rem;
-  transition: all 0.3s ease;
 `;
 
 const CardTitle = styled.h3`
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  transition: color 0.3s ease;
+  color: white;
 `;
 
 const CardContent = styled.p`
-  color: #666;
+  color: white;
   line-height: 1.6;
-  transition: color 0.3s ease;
 `;
 
 const ContactCard = styled.div`
-  background: #f2f2f2;
+  background: #E85D24;
   padding: 2rem;
   border-radius: 10px;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-5px);
-    background: #E85D24;
-    
-    ${CardTitle}, ${CardContent} {
-      color: white;
-    }
-    
-    ${Icon} {
-      background: white;
-    }
-  }
 `;
 
 const Footer = styled.div`

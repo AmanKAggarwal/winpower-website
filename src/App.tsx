@@ -6,6 +6,15 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import { ROUTES } from "./Routes";
 import { RouteElement } from "./types/RouteElement";
 import { PageWrapper } from "./components/PageWrapper";
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+  }
+`;
 
 const getFlattenedRouteElements = (routes: RouteElement[]): RouteElement[] => {
   const flattenedRoutes = [];
@@ -43,6 +52,7 @@ const AppRoutes: React.FC = () => {
 const App: React.FC = () => {
   return (
     <Router>
+      <GlobalStyle />
       <Navbar />
       <AppRoutes />
       <Footer />

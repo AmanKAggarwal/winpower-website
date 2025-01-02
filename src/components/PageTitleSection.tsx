@@ -4,9 +4,9 @@ import styled from "styled-components";
 // Styled Components
 const SectionContainer = styled.div`
   position: relative;
-  background-color: #e6e3e3;
+  background-color: #000000;
   max-height: 400px;
-  padding: 120px 0 40px 0; /* 120px top padding to clear navbar */
+  padding: 40px 0 80px 0;
   margin-top: 0;
   width: 100%;
   overflow: hidden;
@@ -38,10 +38,10 @@ const ImageContainer = styled.div<{ side: "left" | "right" }>`
   img {
     width: auto;
     height: auto;
-    max-height: 240px; /* Adjusted to account for the increased padding */
+    max-height: 240px;
     max-width: 100%;
-    filter: brightness(0) contrast(1);
-    opacity: 0.3;
+    filter: brightness(0) invert(1);
+    opacity: 0.5;
     object-fit: contain;
   }
 

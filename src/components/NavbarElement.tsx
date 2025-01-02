@@ -13,14 +13,19 @@ import { fadeIn, slideInRight } from "../styles/animations";
  */
 const NavLink = styled.li<{ active?: boolean; hasChildren?: boolean }>`
   font-size: 1rem;
-  color: ${(props) => (props.active ? "#e95d22" : "#000")};
+  color: ${(props) => props.active ? "#e95d22" : "#ffffff"};
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
   position: relative;
   display: flex;
   align-items: center;
   padding: 0.5rem 0;
   gap: 0.4rem;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
   // Underline animation for non-dropdown items
   &::after {
@@ -31,13 +36,13 @@ const NavLink = styled.li<{ active?: boolean; hasChildren?: boolean }>`
     width: 0;
     height: 2px;
     background-color: #e95d22;
-    transition: all 0.3s ease;
+    transition: width 0.3s ease;
     transform: translateX(-50%);
   }
 
   &:hover {
     color: #e95d22;
-
+    
     &::after {
       width: 100%;
     }
@@ -47,7 +52,6 @@ const NavLink = styled.li<{ active?: boolean; hasChildren?: boolean }>`
   a {
     text-decoration: none;
     color: inherit;
-    transition: all 0.3s ease;
     order: 1;
   }
 
@@ -130,8 +134,8 @@ const DropdownMenu = styled.ul`
   top: calc(100% + 0.5rem);
   left: 50%;
   transform: translateX(-50%);
-  background-color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #000000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   border: 1px solid #e95d22;
   border-radius: 4px;
   list-style: none;
@@ -139,6 +143,28 @@ const DropdownMenu = styled.ul`
   z-index: 1000;
   min-width: 250px;
   animation: ${fadeIn} 0.2s ease-out;
+
+  li {
+    padding: 0.5rem 0;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #e95d22;
+    }
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+
+    &:hover {
+      color: #e95d22;
+    }
+  }
 
   &::before {
     content: '';
@@ -148,40 +174,6 @@ const DropdownMenu = styled.ul`
     right: 0;
     height: 0.5rem;
     background: transparent;
-  }
-
-  li {
-    padding: 0.5rem 0;
-    color: #666;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background-color: #e95d22;
-      transition: width 0.3s ease;
-    }
-
-    &:hover {
-      color: #e95d22;
-
-      &::after {
-        width: 100%;
-      }
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      padding: 0.5rem 0;
-    }
   }
 
   // Mobile styles

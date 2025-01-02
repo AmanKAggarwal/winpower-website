@@ -4,34 +4,31 @@ import { useLocation } from "react-router-dom";
 import { ROUTES } from "../Routes"; 
 import { Images } from "../data/images";
 import NavbarElement from "./NavbarElement";
+import { Link } from "react-router-dom";
 import { fadeIn, slideInRight } from "../styles/animations";
 
 // Styled components
-interface NavbarContainerProps {
-  isScrolled: boolean;
-}
 
-const NavbarContainer = styled.nav<NavbarContainerProps>`
+const NavbarContainer = styled.nav`
   position: fixed;
   top: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 3rem;
-  background: ${props => props.isScrolled ? '#ffffff' : 'transparent'};
-  transition: background-color 0.3s ease;
-  box-shadow: ${props => props.isScrolled ? '0 2px 4px rgba(0,0,0,0.1)' : 'none'};
+  padding: 0.5rem 3rem;
+  background: #000000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   z-index: 1000;
 
   @media (max-width: 768px) {
-    padding: 1rem;
+    padding: 0.5rem 1rem;
   }
 `;
 
 const LogoImage = styled.img`
-  width: 90px;
-  height: 90px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   object-fit: cover;
   transition: transform 0.3s ease;
@@ -41,8 +38,8 @@ const LogoImage = styled.img`
   }
 
   @media (max-width: 768px) {
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
   }
 `;
 
@@ -59,9 +56,9 @@ const NavLinks = styled.ul<{ $isOpen: boolean }>`
     top: 100%;
     left: 0;
     right: 0;
-    background: white;
+    background: #000000;
     padding: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     gap: 1rem;
     animation: ${slideInRight} 0.3s ease-out;
   }
@@ -86,26 +83,14 @@ const HamburgerButton = styled.button`
   div {
     width: 25px;
     height: 3px;
-    background-color: #000;
+    background-color: #ffffff;
     margin: 4px 0;
-    transition: all 0.3s ease;
   }
 `;
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
-
-  // Handle scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -113,13 +98,11 @@ const Navbar: React.FC = () => {
   }, [location]);
 
   return (
-    <NavbarContainer isScrolled={isScrolled}>
-      <LogoImage src={Images.WinpowerLogoImage} alt="Winpower Logo" />
-      <HamburgerButton onClick={() => setIsOpen(!isOpen)}>
-        <div />
-        <div />
-        <div />
-      </HamburgerButton>
+    <NavbarContainer>
+      <Link to="/">
+        <LogoImage src={Images.WinpowerLogoImage} alt="Winpower Logo" />
+      </Link>
+
       <NavLinks $isOpen={isOpen}>
         {ROUTES.map((route) => (
           <NavbarElement
@@ -129,6 +112,12 @@ const Navbar: React.FC = () => {
           />
         ))}
       </NavLinks>
+
+      <HamburgerButton onClick={() => setIsOpen(!isOpen)}>
+        <div />
+        <div />
+        <div />
+      </HamburgerButton>
     </NavbarContainer>
   );
 };
