@@ -85,7 +85,7 @@ const ServiceCard = styled.div`
 `;
 
 // Map service paths to their respective images
-const serviceImages = {
+const serviceImages: { [key: string]: string } = {
   '/services/substations-transmission-distribution-line': Images.SubstationHQImage,
   '/services/designing': Images.DesignBuildingImage,
   '/services/survey-inspection': Images.SurveyInspectionImage,
@@ -116,17 +116,19 @@ const ServicesPage: React.FC = () => {
         <Content>
           <ServicesContainer>
             {services.map((service) => {
+              const pathKey = service.path.split('/').pop() || '';
+              const imagePath = service.path as keyof typeof serviceImages;
               return (
                 <ServiceCard 
                   key={service.path}
                   onClick={() => handleServiceClick(service.path)}
                 >
                   <img 
-                    src={serviceImages[service.path as keyof typeof serviceImages]} 
+                    src={serviceImages[imagePath]} 
                     alt={service.title}
                   />
                   <h3>{service.title}</h3>
-                  <p>{serviceDescriptions[service.path.split('/').pop() as keyof typeof serviceDescriptions]}</p>
+                  <p>{serviceDescriptions[pathKey]}</p>
                 </ServiceCard>
               );
             })}

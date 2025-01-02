@@ -2,14 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { RouteElement } from "../types/RouteElement";
-import { fadeIn, slideInRight } from "../styles/animations";
 
-// Styled components
-/**
- * Styled component for a navigation link.
- * 
- * @param {boolean} $active - Whether the link is active.
- */
 const NavLink = styled(Link)<{ $active?: boolean }>`
   font-size: 1rem;
   color: ${(props) => props.$active ? "#e95d22" : "#ffffff"};
@@ -45,7 +38,6 @@ const NavLink = styled(Link)<{ $active?: boolean }>`
     }
   }
 
-  // Mobile styles
   @media (max-width: 768px) {
     font-size: 1.1rem;
     padding: 0.5rem 0;
@@ -61,6 +53,14 @@ const NavLink = styled(Link)<{ $active?: boolean }>`
       transform: translateX(10px);
     }
   }
+`;
+
+const NavLinkWrapper = styled.li`
+  list-style: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
 `;
 
 const DropdownIcon = styled.button<{ $active?: boolean; $isOpen?: boolean }>`
@@ -103,34 +103,40 @@ const DesktopDropdownIcon = styled.span`
 const DropdownMenuContainer = styled.div<{ $isOpen?: boolean }>`
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
   background: #000000;
-  min-width: 200px;
+  min-width: 250px;
+  width: max-content;
+  max-width: min(90vw, 400px);
   padding: 1rem;
   border-radius: 4px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-10px);
   transition: all 0.3s ease;
   z-index: 1000;
 
   @media (max-width: 768px) {
     position: static;
+    left: 0;
+    transform: none;
     opacity: ${props => props.$isOpen ? 1 : 0};
     visibility: ${props => props.$isOpen ? 'visible' : 'hidden'};
-    transform: none;
     box-shadow: none;
     height: ${props => props.$isOpen ? 'auto' : '0'};
     padding: ${props => props.$isOpen ? '1rem 0' : '0'};
     overflow: hidden;
     min-width: 100%;
+    width: 100%;
+    max-width: 100%;
   }
 `;
 
 const DropdownMenuItem = styled.div`
-  padding: 0.5rem 0;
+  padding: 0.5rem;
   width: 100%;
+  box-sizing: border-box;
   
   a {
     color: #ffffff;
@@ -139,7 +145,17 @@ const DropdownMenuItem = styled.div`
     transition: color 0.3s ease;
     display: block;
     width: 100%;
-    padding: 0.5rem 0;
+    padding: 0.75rem;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.4;
+    text-align: center;
+
+    @media (max-width: 768px) {
+      text-align: left;
+      padding: 0.5rem;
+    }
 
     &:hover {
       color: #e95d22;
@@ -154,128 +170,11 @@ const NavLinkWithDropdown = styled.div`
     &:hover ${DropdownMenuContainer} {
       opacity: 1;
       visibility: visible;
-      transform: translateY(0);
+      transform: translateX(-50%) translateY(0);
     }
   }
 `;
 
-const NavLinkWrapper = styled.li<{ hasChildren?: boolean }>`
-  list-style: none;
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-`;
-
-const DropdownMenu = styled.ul`
-  display: inherit;
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #000000;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  border: 1px solid #e95d22;
-  border-radius: 4px;
-  list-style: none;
-  padding: 0.5rem 1rem;
-  z-index: 1000;
-  min-width: 250px;
-  animation: ${fadeIn} 0.2s ease-out;
-
-  li {
-    padding: 0.5rem 0;
-    color: #ffffff;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: #e95d22;
-    }
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-    display: block;
-    width: 100%;
-
-    &:hover {
-      color: #e95d22;
-    }
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: -0.5rem;
-    left: 0;
-    right: 0;
-    height: 0.5rem;
-    background: transparent;
-  }
-
-  // Mobile styles
-  @media (max-width: 768px) {
-    position: static;
-    transform: none;
-    box-shadow: none;
-    border: none;
-    border-left: 2px solid #e95d22;
-    margin-left: 1rem;
-    padding: 0 0 0 1rem;
-    min-width: unset;
-    width: 100%;
-    animation: ${slideInRight} 0.3s ease-out;
-
-    &::before {
-      display: none;
-    }
-
-    li {
-      padding: 0.5rem 0;
-      
-      &::after {
-        display: none;
-      }
-      
-      &:hover {
-        transform: translateX(8px);
-      }
-    }
-  }
-`;
-
-const NavLinkContainer = styled.div`
-  position: relative; /* Ensure dropdown is positioned relative to the parent */
-  display: inline-block; /* Needed for dropdown alignment */
-
-  // Mobile styles
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-`;
-
-const NavLinkWithDropdownContainer = styled(NavLinkContainer)`
-  &:hover ${DropdownMenuContainer} {
-    display: block; /* Show dropdown menu on hover */
-  }
-
-  // Mobile styles
-  @media (max-width: 768px) {
-    ${DropdownMenuContainer} {
-      display: block;
-      margin-top: 0.5rem;
-    }
-  }
-`;
-
-/**
- * NavbarElement component.
- * 
- * @param {RouteElement} route - The route element.
- * @param {boolean} active - Whether the route is active.
- */
 interface NavbarElementProps {
   route: RouteElement;
   active: boolean;
