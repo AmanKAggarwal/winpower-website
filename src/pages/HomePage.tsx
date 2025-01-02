@@ -10,7 +10,9 @@ import { ROUTES } from "../Routes";
 const HeroSection = styled.section`
   position: relative;
   height: 80vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${Images.PowerGridBannerHomeImage});
+  background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), 
+              linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), 
+              url(${Images.PowerGridBannerHomeImage});
   background-size: cover;
   background-position: center;
   display: flex;
@@ -38,7 +40,7 @@ const TitleLine = styled.h1`
   font-weight: bold;
   line-height: 1.2;
   margin: 0;
-  color: white;
+  color: #000000;
   text-transform: uppercase;
   
   @media (max-width: 768px) {
@@ -54,7 +56,7 @@ const HeroSubtitle = styled.p`
   font-size: 1.5rem;
   line-height: 1.5;
   margin: 1.5rem 0 0 0;
-  color: white;
+  color: #000000;
   max-width: 600px;
 
   @media (max-width: 768px) {
@@ -111,16 +113,16 @@ const ProjectCard = styled.div`
 `;
 
 const Section = styled.section<{ $dark?: boolean }>`
-  padding: 2.5rem 2rem;
-  background: ${props => props.$dark ? '#f5f5f5' : '#fff'};
-  color: ${props => props.$dark ? '#333' : '#333'};
+  padding: 5rem 2rem;
+  background: ${props => props.$dark ? '#1a1a1a' : '#fff'};
+  color: ${props => props.$dark ? '#fff' : '#333'};
 `;
 
 const SectionTitle = styled.h2<{ $dark?: boolean }>`
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 3rem;
-  color: ${props => props.$dark ? '#333' : '#333'};
+  color: ${props => props.$dark ? '#fff' : '#333'};
   position: relative;
   
   &:after {
@@ -131,6 +133,19 @@ const SectionTitle = styled.h2<{ $dark?: boolean }>`
     background: #e95d22;
     margin: 1rem auto 0;
     border-radius: 2px;
+  }
+`;
+
+const WhoWeAreContent = styled.div<{ $dark?: boolean }>`
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  color: ${props => props.$dark ? '#f5f5f5' : '#333'};
+
+  p {
+    margin-bottom: 1.5rem;
   }
 `;
 
@@ -477,7 +492,7 @@ const Button = styled.button`
   }
 `;
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [_, setDirection] = useState(1);
 
@@ -612,15 +627,14 @@ const HomePage = () => {
         </TestimonialWrapper>
       </TestimonialsSection>
 
-      <AboutSection>
-        <SectionTitle>WHO WE ARE</SectionTitle>
-        <p>
-          Win Power Infra Pvt. Ltd. is a pillar of Singhi group of companies, and a diversified company established in 1993 
-          with an objective to bridge the gap of sustainable development of power in Rural & semi urban areas in North Eastern region. 
-          The North eastern region is one of typical & remote terrain where we are successfully delivering our goal and brought smile 
-          to millions of people in the hinterland of the country.
-        </p>
-      </AboutSection>
+      <Section $dark>
+        <SectionTitle $dark>WHO WE ARE</SectionTitle>
+        <WhoWeAreContent $dark>
+          <p>
+          Win Power Infra Pvt. Ltd. is a pillar of Singhi group of companies, and a diversified company established in 1993 with an objective to bridge the gap of sustainable development of power in Rural & semi urban areas in North Eastern region. The North eastern region is one of typical & remote terrain where we are successfully delivering our goal and brought smile to millions of people in the hinterland of the country.
+          </p>
+        </WhoWeAreContent>
+      </Section>
 
       <DiscussSection>
         <DiscussContent>

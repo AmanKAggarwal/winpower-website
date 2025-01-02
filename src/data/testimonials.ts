@@ -18,5 +18,10 @@ export const testimonials: Testimonial[] = [
     author: "Mr. Rajneesh Baruah",
     position: "Head, Electrical Division"
   },
-  // Add more testimonials here
+  {
+    id: 3,
+    text: "We have been associated with Win Power since many years for all our substation requirements & installations. I highly recommended them",
+    author: "Mr. Nikhil Thard",
+    position: "Proprietor"
+  }
 ];

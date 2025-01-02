@@ -2,9 +2,10 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import NotFoundPage from "./pages/NotFoundPage";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { ROUTES } from "./Routes";
 import { RouteElement } from "./types/RouteElement";
+import { PageWrapper } from "./components/PageWrapper";
 
 const getFlattenedRouteElements = (routes: RouteElement[]): RouteElement[] => {
   const flattenedRoutes = [];
@@ -18,12 +19,16 @@ const getFlattenedRouteElements = (routes: RouteElement[]): RouteElement[] => {
   return flattenedRoutes;
 };
 
-const App: React.FC = () => {
+const AppRoutes: React.FC = () => {
+  const location = useLocation();
   const routeElements = getFlattenedRouteElements(ROUTES);
+  
+  // Find the current route to get its title
+  const currentRoute = routeElements.find(route => route.path === location.pathname);
+  const pageTitle = currentRoute?.title || "404 Not Found";
 
   return (
-    <Router>
-      <Navbar />
+    <PageWrapper title={pageTitle}>
       <Routes>
         {routeElements.map((route) => (
           <Route key={route.path} path={route.path} element={route.component} />
@@ -31,10 +36,18 @@ const App: React.FC = () => {
         {/* Catch-all route for 404 */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+    </PageWrapper>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <Router>
+      <Navbar />
+      <AppRoutes />
       <Footer />
     </Router>
   );
 };
-
 
 export default App;

@@ -197,24 +197,40 @@ const GetInTouchSection: React.FC = () => {
   };
 
 const CopyrightWrapper = styled.div`
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding-top: 2rem;
   margin-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 
   @media (max-width: 768px) {
-    margin-top: 1rem;
-    padding-top: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
   }
 `;
 
+const CopyrightText = styled.div`
+  color: #d6d6d6;
+`;
+
+const DesignCredit = styled.div`
+  color: #d6d6d6;
+`;
+
 const CopyrightSection: React.FC = () => {
-    const data: FooterData = footerData;
+  const data: FooterData = footerData;
 
   return (
     <CopyrightWrapper>
-      Copyright {new Date().getFullYear()} {data.companyName} All rights
-      reserved.
+      <CopyrightText>
+        Copyright {new Date().getFullYear()} {data.companyName} All rights
+        reserved.
+      </CopyrightText>
+      <DesignCredit>
+        Design by Brand Imprint
+      </DesignCredit>
     </CopyrightWrapper>
   );
 };
