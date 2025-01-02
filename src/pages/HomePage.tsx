@@ -291,6 +291,28 @@ const TestimonialAuthor = styled.div`
   }
 `;
 
+const DotContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+`;
+
+const Dot = styled.button<{ $active: boolean }>`
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background-color: ${props => props.$active ? '#e95d22' : 'rgba(233, 93, 34, 0.3)'};
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+
+  &:hover {
+    background-color: ${props => props.$active ? '#e95d22' : 'rgba(233, 93, 34, 0.5)'};
+  }
+`;
+
 const ArrowButton = styled.button<{ $direction: 'left' | 'right' }>`
   background: none;
   border: none;
@@ -319,49 +341,6 @@ const ArrowButton = styled.button<{ $direction: 'left' | 'right' }>`
 
   @media (max-width: 768px) {
     display: none;
-  }
-`;
-
-const DotContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 2rem;
-`;
-
-const Dot = styled.button<{ $active: boolean }>`
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: none;
-  background-color: ${props => props.$active ? '#e95d22' : 'rgba(233, 93, 34, 0.3)'};
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 0;
-
-  &:hover {
-    background-color: ${props => props.$active ? '#e95d22' : 'rgba(233, 93, 34, 0.5)'};
-  }
-`;
-
-const AboutSection = styled.section`
-  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${Images.PowerlineImage});
-  background-size: cover;
-  background-position: center;
-  color: #333;
-  padding: 5rem 2rem;
-  text-align: center;
-
-  p {
-    max-width: 1000px;
-    margin: 0 auto;
-    line-height: 1.8;
-    font-size: 1.1rem;
-    opacity: 0.8;
-  }
-
-  @media (max-width: 768px) {
-    padding: 3rem 1rem;
   }
 `;
 
@@ -456,27 +435,6 @@ const DiscussButton = styled(Link)`
   }
 `;
 
-const Button = styled.button`
-  background: transparent;
-  color: #e95d22;
-  border: 2px solid #e95d22;
-  padding: 0.8rem 2rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  margin-top: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.9rem;
-
-  &:hover {
-    background: #e95d22;
-    color: white;
-    transform: translateY(-2px);
-  }
-`;
-
 const HomePageContainer = styled.div`
   width: 100%;
   min-height: 100vh;
@@ -488,13 +446,11 @@ const MainContent = styled.main`
 
 const HomePage: React.FC = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [direction, setDirection] = useState(1);
   const contactRoute = ROUTES.find(route => route.path === '/contact-us')?.path || '#';
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-      setDirection(1);
     }, 5000);
 
     return () => clearInterval(interval);
@@ -502,12 +458,10 @@ const HomePage: React.FC = () => {
 
   const handlePrevTestimonial = () => {
     setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-    setDirection(-1);
   };
 
   const handleNextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    setDirection(1);
   };
 
   return (
@@ -531,7 +485,6 @@ const HomePage: React.FC = () => {
             </HeroSubtitle>
           </HeroContent>
         </HeroSection>
-
 
         <Section style={{ background: '#f8f9fa' }}>
           <SectionTitle>WHO WE ARE</SectionTitle>
