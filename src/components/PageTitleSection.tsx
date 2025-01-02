@@ -65,6 +65,29 @@ const Title = styled.h2`
   }
 `;
 
+const Container = styled.div`
+  background-color: #000000;
+  color: #e95d22;
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  
+  @media (max-width: 768px) {
+    padding: 1.5rem 1rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    font-weight: bold;
+    
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+`;
+
 interface PageTitleSectionProps {
   title: string;
   leftImagePath?: string;
@@ -79,21 +102,23 @@ const PageTitleSection: React.FC<PageTitleSectionProps> = ({
   const hasImages = Boolean(leftImagePath) || Boolean(rightImagePath);
   
   return (
-    <SectionContainer>
-      <ContentWrapper hasImages={hasImages}>
-        {leftImagePath && (
-          <ImageContainer side="left">
-            <img src={leftImagePath} alt="Left decoration" />
-          </ImageContainer>
-        )}
-        <Title>{title}</Title>
-        {rightImagePath && (
-          <ImageContainer side="right">
-            <img src={rightImagePath} alt="Right decoration" />
-          </ImageContainer>
-        )}
-      </ContentWrapper>
-    </SectionContainer>
+    <Container>
+      <SectionContainer>
+        <ContentWrapper hasImages={hasImages}>
+          {leftImagePath && (
+            <ImageContainer side="left">
+              <img src={leftImagePath} alt="Left decoration" />
+            </ImageContainer>
+          )}
+          <Title>{title}</Title>
+          {rightImagePath && (
+            <ImageContainer side="right">
+              <img src={rightImagePath} alt="Right decoration" />
+            </ImageContainer>
+          )}
+        </ContentWrapper>
+      </SectionContainer>
+    </Container>
   );
 };
 

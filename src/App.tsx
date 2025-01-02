@@ -13,6 +13,17 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     background-color: #000000;
+    overflow-x: hidden;
+  }
+
+  html {
+    overflow-x: hidden;
+  }
+
+  #root {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
   }
 `;
 

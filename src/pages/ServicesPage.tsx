@@ -5,6 +5,15 @@ import PageTitleSection from '../components/PageTitleSection';
 import { ROUTES } from '../Routes';
 import { Images } from "../data/images";
 
+const PageContainer = styled.div`
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+`;
+
 const Container = styled.div`
   min-height: 100vh;
   display: flex;
@@ -17,58 +26,61 @@ const Content = styled.div`
   background: #fff;
 `;
 
-const ServicesGrid = styled.div`
+const ServicesContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 2rem;
+  max-width: 100%;
+  box-sizing: border-box;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 1rem;
+  }
 `;
 
 const ServiceCard = styled.div`
-  background: white;
-  padding: 2.5rem;
-  border-radius: 12px;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-  border: 1px solid #eee;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-
-  &:hover {
-    transform: translateY(-5px);
-    border-color: #e95d22;
-    box-shadow: 0 12px 48px rgba(233, 93, 34, 0.15);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  box-sizing: border-box;
+  width: 100%;
+  
+  @media (max-width: 768px) {
+    padding: 1.5rem;
   }
 
   img {
-    width: 140px;
-    height: 140px;
-    object-fit: cover;
-    margin-bottom: 2rem;
-    border-radius: 10px;
-    border: 4px solid #f5f5f5;
-    transition: all 0.3s ease;
-  }
-
-  &:hover img {
-    border-color: #e95d22;
-    transform: scale(1.05);
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 1.5rem;
+    object-fit: contain;
   }
 
   h3 {
-    color: #333;
-    margin: 1rem 0;
-    font-size: 1.4rem;
-    font-weight: 500;
+    color: #333333;
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+    
+    @media (max-width: 768px) {
+      font-size: 1.25rem;
+    }
   }
 
   p {
-    color: #666;
+    color: #666666;
+    margin: 0;
+    font-size: 1rem;
     line-height: 1.6;
-    margin-top: 1rem;
   }
 `;
 
@@ -98,28 +110,30 @@ const ServicesPage: React.FC = () => {
   };
 
   return (
-    <Container>
-      <PageTitleSection title="Our Services" />
-      <Content>
-        <ServicesGrid>
-          {services.map((service) => {
-            return (
-              <ServiceCard 
-                key={service.path}
-                onClick={() => handleServiceClick(service.path)}
-              >
-                <img 
-                  src={serviceImages[service.path as keyof typeof serviceImages]} 
-                  alt={service.title}
-                />
-                <h3>{service.title}</h3>
-                <p>{serviceDescriptions[service.path.split('/').pop() as keyof typeof serviceDescriptions]}</p>
-              </ServiceCard>
-            );
-          })}
-        </ServicesGrid>
-      </Content>
-    </Container>
+    <PageContainer>
+      <Container>
+        <PageTitleSection title="Our Services" />
+        <Content>
+          <ServicesContainer>
+            {services.map((service) => {
+              return (
+                <ServiceCard 
+                  key={service.path}
+                  onClick={() => handleServiceClick(service.path)}
+                >
+                  <img 
+                    src={serviceImages[service.path as keyof typeof serviceImages]} 
+                    alt={service.title}
+                  />
+                  <h3>{service.title}</h3>
+                  <p>{serviceDescriptions[service.path.split('/').pop() as keyof typeof serviceDescriptions]}</p>
+                </ServiceCard>
+              );
+            })}
+          </ServicesContainer>
+        </Content>
+      </Container>
+    </PageContainer>
   );
 };
 

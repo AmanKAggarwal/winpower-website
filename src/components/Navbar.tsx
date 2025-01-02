@@ -16,10 +16,11 @@ const NavbarContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 3rem;
+  padding: 0.5rem 2rem;
   background: #000000;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   z-index: 1000;
+  box-sizing: border-box;
 
   @media (max-width: 768px) {
     padding: 0.5rem 1rem;
@@ -27,30 +28,26 @@ const NavbarContainer = styled.nav`
 `;
 
 const LogoImage = styled.img`
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: scale(1.05);
-  }
+  height: 40px;
+  width: auto;
+  cursor: pointer;
 
   @media (max-width: 768px) {
-    width: 50px;
-    height: 50px;
+    height: 35px;
   }
 `;
 
 const NavLinks = styled.ul<{ $isOpen: boolean }>`
   display: flex;
   list-style: none;
-  gap: 1.5rem;
+  gap: 2rem;
   animation: ${fadeIn} 0.3s ease-out;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
 
   @media (max-width: 768px) {
-    display: ${props => props.$isOpen ? 'flex' : 'none'};
+    display: ${props => (props.$isOpen ? 'flex' : 'none')};
     flex-direction: column;
     position: absolute;
     top: 100%;
@@ -58,8 +55,8 @@ const NavLinks = styled.ul<{ $isOpen: boolean }>`
     right: 0;
     background: #000000;
     padding: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     gap: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     animation: ${slideInRight} 0.3s ease-out;
   }
 `;

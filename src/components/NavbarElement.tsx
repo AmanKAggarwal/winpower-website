@@ -8,12 +8,11 @@ import { fadeIn, slideInRight } from "../styles/animations";
 /**
  * Styled component for a navigation link.
  * 
- * @param {boolean} active - Whether the link is active.
- * @param {boolean} hasChildren - Whether the link has children.
+ * @param {boolean} $active - Whether the link is active.
  */
-const NavLink = styled.li<{ active?: boolean; hasChildren?: boolean }>`
+const NavLink = styled(Link)<{ $active?: boolean }>`
   font-size: 1rem;
-  color: ${(props) => props.active ? "#e95d22" : "#ffffff"};
+  color: ${(props) => props.$active ? "#e95d22" : "#ffffff"};
   cursor: pointer;
   transition: transform 0.3s ease;
   position: relative;
@@ -21,11 +20,9 @@ const NavLink = styled.li<{ active?: boolean; hasChildren?: boolean }>`
   align-items: center;
   padding: 0.5rem 0;
   gap: 0.4rem;
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
+  text-decoration: none;
+  flex: 1;
+  white-space: nowrap;
 
   // Underline animation for non-dropdown items
   &::after {
@@ -48,47 +45,13 @@ const NavLink = styled.li<{ active?: boolean; hasChildren?: boolean }>`
     }
   }
 
-  // Link styles
-  a {
-    text-decoration: none;
-    color: inherit;
-    order: 1;
-  }
-
-  // Dropdown arrow styles for desktop
-  ${(props) =>
-    props.hasChildren &&
-    `
-      &::after {
-        display: none;
-      }
-
-      &::before {
-        content: "⌵";
-        font-size: 1.2rem;
-        color: inherit;
-        position: relative;
-        top: -2px;
-        line-height: 1;
-        font-weight: bold;
-        transform: scaleY(0.6);
-        pointer-events: none;
-        transition: transform 0.3s ease;
-        order: 2;
-        margin-left: auto;
-      }
-
-      &:hover::before {
-        transform: scaleY(0.6) translateY(2px);
-      }
-    `}
-
   // Mobile styles
   @media (max-width: 768px) {
     font-size: 1.1rem;
     padding: 0.5rem 0;
     width: 100%;
     justify-content: space-between;
+    white-space: normal;
 
     &::after {
       display: none;
@@ -97,37 +60,113 @@ const NavLink = styled.li<{ active?: boolean; hasChildren?: boolean }>`
     &:hover {
       transform: translateX(10px);
     }
-
-    // Mobile dropdown arrow styles
-    ${props => props.hasChildren && `
-      &::before {
-        display: none;
-      }
-
-      &::after {
-        display: block;
-        content: "⌵";
-        position: static;
-        background: none;
-        font-size: 1.2rem;
-        color: inherit;
-        margin-left: auto;
-        line-height: 1;
-        font-weight: bold;
-        transform: ${props.active ? 'scaleY(0.6) rotate(180deg)' : 'scaleY(0.6)'};
-        pointer-events: none;
-        transition: transform 0.3s ease;
-        width: auto;
-        height: auto;
-        order: 2;
-      }
-    `}
   }
 `;
 
-/**
- * Styled component for a dropdown menu.
- */
+const DropdownIcon = styled.button<{ $active?: boolean; $isOpen?: boolean }>`
+  font-size: 1.2rem;
+  margin-left: 0.4rem;
+  line-height: 1;
+  font-weight: bold;
+  transform: scaleY(0.6) ${props => props.$isOpen ? 'rotate(180deg)' : 'rotate(0)'};
+  transition: transform 0.3s ease;
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 8px;
+  cursor: pointer;
+
+  @media (min-width: 769px) {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: auto;
+    padding: 12px;
+    color: ${props => props.$active ? "#e95d22" : "#ffffff"};
+  }
+`;
+
+const DesktopDropdownIcon = styled.span`
+  font-size: 1.2rem;
+  margin-left: 0.4rem;
+  line-height: 1;
+  font-weight: bold;
+  transform: scaleY(0.6);
+  transition: transform 0.3s ease;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const DropdownMenuContainer = styled.div<{ $isOpen?: boolean }>`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #000000;
+  min-width: 200px;
+  padding: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+
+  @media (max-width: 768px) {
+    position: static;
+    opacity: ${props => props.$isOpen ? 1 : 0};
+    visibility: ${props => props.$isOpen ? 'visible' : 'hidden'};
+    transform: none;
+    box-shadow: none;
+    height: ${props => props.$isOpen ? 'auto' : '0'};
+    padding: ${props => props.$isOpen ? '1rem 0' : '0'};
+    overflow: hidden;
+    min-width: 100%;
+  }
+`;
+
+const DropdownMenuItem = styled.div`
+  padding: 0.5rem 0;
+  width: 100%;
+  
+  a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0;
+
+    &:hover {
+      color: #e95d22;
+    }
+  }
+`;
+
+const NavLinkWithDropdown = styled.div`
+  position: relative;
+
+  @media (min-width: 769px) {
+    &:hover ${DropdownMenuContainer} {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  }
+`;
+
+const NavLinkWrapper = styled.li<{ hasChildren?: boolean }>`
+  list-style: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+`;
+
 const DropdownMenu = styled.ul`
   display: inherit;
   position: absolute;
@@ -207,23 +246,6 @@ const DropdownMenu = styled.ul`
   }
 `;
 
-/**
- * Styled component for a dropdown menu container.
- */
-const DropdownMenuContainer = styled.div`
-  display: none; /* Hide the dropdown menu by default */
-
-  // Mobile styles
-  @media (max-width: 768px) {
-    &:hover {
-      display: block;
-    }
-  }
-`;
-
-/**
- * Styled component for a navigation link container.
- */
 const NavLinkContainer = styled.div`
   position: relative; /* Ensure dropdown is positioned relative to the parent */
   display: inline-block; /* Needed for dropdown alignment */
@@ -234,10 +256,7 @@ const NavLinkContainer = styled.div`
   }
 `;
 
-/**
- * Styled component for a navigation link with a dropdown.
- */
-const NavLinkWithDropdown = styled(NavLinkContainer)`
+const NavLinkWithDropdownContainer = styled(NavLinkContainer)`
   &:hover ${DropdownMenuContainer} {
     display: block; /* Show dropdown menu on hover */
   }
@@ -257,31 +276,54 @@ const NavLinkWithDropdown = styled(NavLinkContainer)`
  * @param {RouteElement} route - The route element.
  * @param {boolean} active - Whether the route is active.
  */
-const NavbarElement: React.FC<{ route: RouteElement; active: boolean }> = ({ route, active }) => {
-  if (route.children && route.children.length > 0) {
+interface NavbarElementProps {
+  route: RouteElement;
+  active: boolean;
+}
+
+const NavbarElement: React.FC<NavbarElementProps> = ({ route, active }) => {
+  const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
+
+  const handleDropdownClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  if (route.children) {
     return (
       <NavLinkWithDropdown>
-        <NavLink active={active} hasChildren>
-          <Link to={route.path}>{route.title}</Link>
-        </NavLink>
-        <DropdownMenuContainer>
-          <DropdownMenu>
-            {route.children.map((child) => (
-              <li key={child.path}>
-                <Link to={child.path}>{child.title}</Link>
-              </li>
-            ))}
-          </DropdownMenu>
+        <NavLinkWrapper>
+          <NavLink to={route.path} $active={active}>
+            {route.title}
+            <DesktopDropdownIcon>⌵</DesktopDropdownIcon>
+          </NavLink>
+          <DropdownIcon 
+            onClick={handleDropdownClick}
+            $active={active}
+            $isOpen={isDropdownOpen}
+          >
+            ⌵
+          </DropdownIcon>
+        </NavLinkWrapper>
+        <DropdownMenuContainer $isOpen={isDropdownOpen}>
+          {route.children.map((child) => (
+            <DropdownMenuItem key={child.path}>
+              <Link to={child.path}>{child.title}</Link>
+            </DropdownMenuItem>
+          ))}
         </DropdownMenuContainer>
       </NavLinkWithDropdown>
     );
-  } else {
-    return (
-      <NavLink active={active}>
-        <Link to={route.path}>{route.title}</Link>
-      </NavLink>
-    );
   }
+
+  return (
+    <NavLinkWrapper>
+      <NavLink to={route.path} $active={active}>
+        {route.title}
+      </NavLink>
+    </NavLinkWrapper>
+  );
 };
 
 export default NavbarElement;
