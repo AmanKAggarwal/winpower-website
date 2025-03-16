@@ -495,7 +495,7 @@ const HomePage: React.FC = () => {
           <SectionTitle>WHO WE ARE</SectionTitle>
           <WhoWeAreContent>
             <p>
-              Win Power Infra Pvt. Ltd. is a pillar of Singhi group of companies, and a diversified company established in 1993 with an objective to bridge the gap of sustainable development of power in Rural & semi urban areas in North Eastern region. The North eastern region is one of typical & remote terrain where we are successfully delivering our goal and brought smile to millions of people in the hinterland of the country.
+            M/s Win Power Infracon LLP focuses on sustainable power development in rural and semi-urban North Eastern India. Led by CEO Suresh Kr. Agarwalla, the company has roots in United Hardware & Electrical Stores (founded in 1959) and is expanding into civil, real estate, and infrastructure projects while maintaining quality and environmental responsibility.
             </p>
           </WhoWeAreContent>
         </Section>

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { FaMapMarkerAlt, FaPhoneAlt, FaMobileAlt, FaEnvelope, FaFacebook } from "react-icons/fa";
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import { ROUTES } from "../Routes";
 import footerData from "../contents/footer.json";
 import FooterData from "../types/FooterData";
@@ -181,16 +181,8 @@ const GetInTouchSection: React.FC = () => {
           <span>{data.telephone}</span>
         </ContactItem>
         <ContactItem>
-          <FaMobileAlt />
-          <span>{data.mobileNumber}</span>
-        </ContactItem>
-        <ContactItem>
           <FaEnvelope />
           <a href={`mailto:${data.email}`}>{data.email}</a>
-        </ContactItem>
-        <ContactItem>
-            <FaFacebook />
-            <a href={data.facebookURL}>{data.facebookURL}</a>
         </ContactItem>
       </div>
     );

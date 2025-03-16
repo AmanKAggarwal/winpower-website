@@ -82,35 +82,42 @@ const AboutUsSection: React.FC = () => {
       <MaxWidthWrapper>
         {/* Top Section */}
         <TopSection>
-          <UnderlinedSectionHeader>WIN POWER INFRA PVT LTD</UnderlinedSectionHeader>
+          <UnderlinedSectionHeader>M/s Win Power Infracon LLP</UnderlinedSectionHeader>
           <p>
-            <strong>Win Power Infra Pvt. Ltd.</strong> is a pillar of Singhi group of companies,
-            and a diversified company <strong>established in 1993</strong> with an objective to bridge
-            the gap of sustainable development of power in Rural & semi-urban areas in the North Eastern region.
-            The North Eastern region is one of typical & remote terrain where we are successfully delivering our
-            goal and brought smiles to millions of people in the hinterland of the country.
-            <strong>United Hardware & Electrical Store</strong>, the parent organization of Win Power Infra,
-            was <strong>established in 1959</strong>. The group is also involved in manufacturing & supply
-            of Cables & conductors, Pre-Stressed poles, Planting & production of Tea, etc.
+            M/s Win Power Infracon LLP is an ISO 9001:2015 certified company with an objective to bridge the gap of sustainable development
+            of power in Rural and Semi Urban areas in North Eastern Region.  The North Eastern region is one of the typical
+            & remote terrains where they are successfully delivering the goal and bought smiles to millions of people in 
+            the hinterland of the country. The company is driven by Mr. Suresh Kr. Agarwalla (CEO & Managing Partner)
+
+            The root of the company is associated with M/S United hardware & Electrical stores which was formed by Late 
+            Shri Madanlal Agarwalla(Singhi), the founder of the group, in 1959. The key focus of the company 
+            is to explore to untap potentials in Power & renewable energy sector to its optimum level. The company is 
+            rapidly growing and extending its footprints in Civil, Real Estate, roads & bridges etc. 
+            Presently the company is executing projects with consistent quality assurance, cost control and adherence to milestones in a safe environment as per the customer requirement. We Promote the culture of sharing rich and varied experience with staff members, as also with clients and thereby benefits and help the growth of the construction fraternity and society at large.  
           </p>
         </TopSection>
 
-        {/* Flex Section */}
-        <FlexContainer>
-          {/* Image Section */}
-          <ImageContainer>
-            <img src={Images.GenericConstructionImage} alt="Construction" />
-          </ImageContainer>
-
-          {/* Right Text Section */}
-          <TextContainer>
+        <TextContainer>
             <p>
-              Win Power is in the Electrical sector for nearly 25 years and executing projects with consistent
-              quality assurance, cost control, and adherence to milestones in a safe environment as per the customer
-              requirements. It promotes the culture of sharing rich and varied experience with staff members, as also
-              with clients and thereby benefits and helps the growth of the construction fraternity and society at large.
+              The Company has been closely associated with the country's infrastructure building by executing 
+              various challenging projects with critical designs to avoid any form of bad impact on nature. 
+              The top clienteles include:
             </p>
-          </TextContainer>
+            <ul>
+              <li>Assam Power Distribution Company Limited</li>
+              <li>Assam Electricity Grid Corporation Limited</li>
+              <li>Assam Power Generation Company Ltd.</li>
+              <li>Reliance Consumer Products Ltd.</li>
+              <li>Oil India Ltd.</li>
+            </ul>
+        </TextContainer>
+        <FlexContainer>
+          <ImageCard>
+            <img src={Images.CraneImage} alt="Crane Construction" />
+          </ImageCard>
+          <ImageCard>
+            <img src={Images.PowerlineImage} alt="Power Lines" />
+          </ImageCard>
         </FlexContainer>
       </MaxWidthWrapper>
     </SectionContainer>
@@ -136,12 +143,13 @@ const CustomerFirstSection: React.FC = () => {
           <TextContainer>
             <UnderlinedSectionHeader center={false}>Customer First</UnderlinedSectionHeader>
             <p>
+              {/* todo */}
               A strong, customer-focused approach, conformance to global standards and the constant
               quest for top-class quality have enabled the group to sustain leadership in its major lines
               of business for over 60 years. As a result, we are now one of the stable & reliable companies
               in the North-eastern region. Our vendors include Taikai Group of Industries (China), Shanghai
               Jiameng International Trading Co. Ltd. (China), ABB Ltd., Siemens Ltd., GE, Alstom, Toshiba,
-              Schneider, Crompton Greaves, Bajaj, Havel’s, KEI, etc. The company’s operations are characterized
+              Schneider, Crompton Greaves, Bajaj, Havel's, KEI, etc. The company's operations are characterized
               by an overriding emphasis on safety, on-time delivery, cost competitiveness, and high-quality
               standards with a focus on best-in-class practices.
             </p>
@@ -149,15 +157,6 @@ const CustomerFirstSection: React.FC = () => {
           <ImageContainer>
             <img src={Images.BuildingImage} alt="Building" />
           </ImageContainer>
-        </FlexContainer>
-
-        <FlexContainer>
-          <ImageCard>
-            <img src={Images.CraneImage} alt="Crane Construction" />
-          </ImageCard>
-          <ImageCard>
-            <img src={Images.PowerlineImage} alt="Power Lines" />
-          </ImageCard>
         </FlexContainer>
       </MaxWidthWrapper>
     </SectionContainer>

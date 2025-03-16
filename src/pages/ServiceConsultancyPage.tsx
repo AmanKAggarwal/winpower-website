@@ -17,7 +17,7 @@ const IdealDesignSection: React.FC = () => {
           <FlexContainer>
             <TextContainer>
               <p>
-              Win Power Infracon LLP, has an in -house design team that works on the designing process of transmission towers as per the customer requirement. The company uses latest software, such as, PLS- Tower, i-tower Designing TL and STAAD-Pro for designing and bocad-3D, AutoDesk inventor and proge CAD for detailing of tower.
+              The company have developed a well equipped and expert panel for providing all kinds of technical support and complete solution for any kind electrical and civil projects and their feasibility etc.
               </p>
             </TextContainer>
             <ImageContainer>
@@ -29,11 +29,11 @@ const IdealDesignSection: React.FC = () => {
     );
 };
 
-const ServiceDesigningPage: React.FC = () => {
+const ServicesConsultancy: React.FC = () => {
   return (
     <div>
       <PageTitleSection
-        title="Designing"
+        title="Consultancy"
         leftImagePath={Images.CompassDrawingImage}
         rightImagePath={Images.CompassDrawingImage}
       />
@@ -42,4 +42,4 @@ const ServiceDesigningPage: React.FC = () => {
   );
 };
   
-export default ServiceDesigningPage;
+export default ServicesConsultancy;

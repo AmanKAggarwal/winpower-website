@@ -17,17 +17,8 @@ const PlanningExecutionResultsSection: React.FC = () => {
         <MaxWidthWrapper>
           <FlexContainer>
             <TextContainer>
-              <SectionHeader center={false}>Planning, Execution, Results</SectionHeader>
               <p>
-              Win Power Infra Pvt. Ltd, undertakes turnkey as well as task-oriented projects for EHV, HV ,LT lines & Substations. 
-              We specialize in providing complete solutions for designing, sourcing, erection, testing and commissioning of Lines 
-              & SS up to 400 KV.
-              </p>
-              <br />
-              <p>
-              At Win Power Infra, we have the experience to handle all aspects of the process from material procurement, structure 
-              erection, stringing and overall project management. Presently we dealt in all kinds of EHV, HV and LT Lines & substations 
-              including SCADA system, HVDS, Mobile SS etc.
+                Win Power Infracon LLP, undertakes turnkey as well as task-oriented projects for EHV, HV,LT lines & Substations. They are  specialized in providing complete solutions for designing, sourcing, erection, testing and commissioning of Lines & SS up to 400 KV.
               </p>
             </TextContainer>
             <ImageContainer>
