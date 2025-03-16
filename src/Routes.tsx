@@ -7,6 +7,9 @@ import ServicesPage from "./pages/ServicesPage";
 import ServiceSubstationPage from "./pages/ServiceSubstationPage";
 import ServiceDesigningPage from "./pages/ServiceDesigningPage";
 import ServiceSurveyInspectionPage from "./pages/ServiceSurveyInspectionPage";
+import ServicesCivilConstruction from "./pages/ServiceCivilConstructionPage";
+import ServiceConsultancy from "./pages/ServiceConsultancyPage";
+
 import GalleryPage from './pages/GalleryPage';
 import ContactPage from './pages/ContactPage';
 
@@ -40,6 +43,16 @@ export const ROUTES: RouteElement[] = [
         path: "/services/survey-inspection",
         title: "Survey & Inspection",
         component: <ServiceSurveyInspectionPage />,
+      },
+      {
+        path: "/services/civil-construction",
+        title: "Civil Construction",
+        component: <ServicesCivilConstruction />,
+      },
+      {
+        path: "/services/consultancy",
+        title: "Consultancy",
+        component: <ServiceConsultancy />,
       }
     ],
   },
