@@ -36,7 +36,7 @@ export const TextContainer = styled.div`
   text-align: justify;
 
   p {
-    font-size: 1rem;
+    font-size: 1.25rem;
     line-height: 1.5;
     color: #333;
   }

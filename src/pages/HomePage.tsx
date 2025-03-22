@@ -108,7 +108,7 @@ const ProjectCard = styled.div`
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     transition: transform 0.3s ease;
   }
 
@@ -495,7 +495,7 @@ const HomePage: React.FC = () => {
           <SectionTitle>WHO WE ARE</SectionTitle>
           <WhoWeAreContent>
             <p>
-            M/s Win Power Infracon LLP focuses on sustainable power development in rural and semi-urban North Eastern India. Led by CEO Suresh Kr. Agarwalla, the company has roots in United Hardware & Electrical Stores (founded in 1959) and is expanding into civil, real estate, and infrastructure projects while maintaining quality and environmental responsibility.
+            Win Power Infracon LLP focuses on sustainable power development in rural and semi-urban North Eastern India. Led by CEO Suresh Kr. Agarwalla, the company has roots in United Hardware & Electrical Stores (founded in 1959) and is expanding into civil, real estate, and infrastructure projects while maintaining quality and environmental responsibility.
             </p>
           </WhoWeAreContent>
         </Section>
@@ -519,16 +519,19 @@ const HomePage: React.FC = () => {
         </Section>
 
         <ProjectsSection>
-          <SectionTitle>PROJECT HIGHLIGHTS</SectionTitle>
+          <SectionTitle>Clients</SectionTitle>
           <ProjectGrid>
             <ProjectCard>
-              <img src={Images.SubstationHQImage} alt="Substation HQ" />
+              <img src={Images.AEGCLLogoImage} alt="Substation HQ" />
             </ProjectCard>
             <ProjectCard>
-              <img src={Images.Powerline2Image} alt="Transmission Line" />
+              <img src={Images.APDCLLogoImage} alt="Transmission Line" />
             </ProjectCard>
             <ProjectCard>
-              <img src={Images.CraneImage} alt="Construction" />
+              <img src={Images.AssamPowerGenerationLogoImage} alt="Construction" />
+            </ProjectCard>
+            <ProjectCard>
+              <img src={Images.OilIndiaLogoImage} alt="Construction" />
             </ProjectCard>
           </ProjectGrid>
         </ProjectsSection>

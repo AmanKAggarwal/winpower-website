@@ -16,11 +16,10 @@ const AskOurProfessionalsSection: React.FC = () => {
         <MaxWidthWrapper>
           <FlexContainer>
             <TextContainer>
-              <p>
-              Win Power Infracon LLP provides integrated service in survey and design embracing the latest and viable technologies. 
-              The company also provides services for the study of satellite imagery, top sheets for fixations of alternative routes, walk-over survey for final route, detailing on final route and preparation of BOQ, tower scheduling, benching, revetment assessment and profiling.
-              We are a one-stop shop for general, principal and specialist inspections and surveys.
-              </p>
+            <p>
+            Win Power Infracon LLP offers end-to-end services in survey and design, integrating the latest viable technologies to deliver precise and efficient solutions. Our expertise spans the study of satellite imagery, analysis of topographic sheets for identifying alternative routes, walk-over surveys for final route selection, detailed engineering on the finalized route, and the preparation of BOQ. We also handle tower scheduling, benching, revetment assessment, and profiling.
+            With a team of experienced Chartered Engineers, we ensure that every inspection is focused on the most critical aspects. As a one-stop shop, we provide comprehensive general, principal, and specialist inspections and surveys tailored to meet the highest industry standards.
+            </p>
             </TextContainer>
             <ImageContainer>
               <img src={Images.SurveyInspectionImage} alt="Construction Worker" />
@@ -31,33 +30,6 @@ const AskOurProfessionalsSection: React.FC = () => {
     );
 };
 
-const ServicesSection: React.FC = () => {
-    return (
-      <SectionContainer>
-        <MaxWidthWrapper>
-          <FlexContainer>
-            <ImageContainer>
-              <img src={Images.ConstructionWorkerImage} alt="Survey Inspection" />
-            </ImageContainer>
-            <TextContainer>
-              <p>
-                Our company also provided services for the study of satellite imagery, top sheets 
-                for fixations of alternative routes, walk-over survey for final route, detailing on final 
-                route and preparation of BOQ, tower scheduling, benching, revetment assessment 
-                and profiling.
-              </p>
-              <br />
-              <p>
-                With experienced Chartered Engineers to ensure our inspections are focused on the 
-                critical aspects of inspections, we are a one-stop shop for general, principal and 
-                specialist inspections and surveys.
-              </p>
-            </TextContainer>
-          </FlexContainer>
-        </MaxWidthWrapper>
-      </SectionContainer>
-    );
-};
 
 const ServiceSurveyInspectionPage: React.FC = () => {
   return (
@@ -68,7 +40,6 @@ const ServiceSurveyInspectionPage: React.FC = () => {
         rightImagePath={Images.SurveyInspectionHeaderImage}
       />
       <AskOurProfessionalsSection />
-      <ServicesSection />
     </div>
   );
 };

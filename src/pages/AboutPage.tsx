@@ -7,7 +7,6 @@ import {
   SectionContainer,
   FlexContainer, 
   TextContainer,
-  ImageContainer,
 } from "../components/GenericPageComponents";
 
 import { Images } from "../data/images";
@@ -17,33 +16,11 @@ const TopSection = styled.div`
   margin-bottom: 2rem;
 
   p {
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #333;
-    text-align: justify;
-
     @media (min-width: 768px) {
       text-align: left;
     }
   }
 `;
-
-
-const ImageCard = styled.div`
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
-  max-width: 400px;
-  background-color: white;
-  margin: 4rem;
-
-  img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-`;
-
 
 const QuoteSectionContainer = styled.section`
   display: flex;
@@ -82,43 +59,26 @@ const AboutUsSection: React.FC = () => {
       <MaxWidthWrapper>
         {/* Top Section */}
         <TopSection>
-          <UnderlinedSectionHeader>M/s Win Power Infracon LLP</UnderlinedSectionHeader>
-          <p>
-            M/s Win Power Infracon LLP is an ISO 9001:2015 certified company with an objective to bridge the gap of sustainable development
+          <UnderlinedSectionHeader>Win Power Infracon LLP</UnderlinedSectionHeader>
+          <TextContainer>
+            <p>
+              Win Power Infracon LLP is an ISO 9001:2015 certified company with an objective to bridge the gap of sustainable development
             of power in Rural and Semi Urban areas in North Eastern Region.  The North Eastern region is one of the typical
             & remote terrains where they are successfully delivering the goal and bought smiles to millions of people in 
             the hinterland of the country. The company is driven by Mr. Suresh Kr. Agarwalla (CEO & Managing Partner)
 
-            The root of the company is associated with M/S United hardware & Electrical stores which was formed by Late 
+            The root of the company is associated with United hardware & Electrical stores which was formed by Late 
             Shri Madanlal Agarwalla(Singhi), the founder of the group, in 1959. The key focus of the company 
             is to explore to untap potentials in Power & renewable energy sector to its optimum level. The company is 
             rapidly growing and extending its footprints in Civil, Real Estate, roads & bridges etc. 
             Presently the company is executing projects with consistent quality assurance, cost control and adherence to milestones in a safe environment as per the customer requirement. We Promote the culture of sharing rich and varied experience with staff members, as also with clients and thereby benefits and help the growth of the construction fraternity and society at large.  
-          </p>
-        </TopSection>
-
-        <TextContainer>
-            <p>
-              The Company has been closely associated with the country's infrastructure building by executing 
-              various challenging projects with critical designs to avoid any form of bad impact on nature. 
-              The top clienteles include:
+            
+            The Company has been closely associated with the country's infrastructure building by executing 
+            various challenging projects with critical designs to avoid any form of bad impact on nature. 
             </p>
-            <ul>
-              <li>Assam Power Distribution Company Limited</li>
-              <li>Assam Electricity Grid Corporation Limited</li>
-              <li>Assam Power Generation Company Ltd.</li>
-              <li>Reliance Consumer Products Ltd.</li>
-              <li>Oil India Ltd.</li>
-            </ul>
-        </TextContainer>
-        <FlexContainer>
-          <ImageCard>
-            <img src={Images.CraneImage} alt="Crane Construction" />
-          </ImageCard>
-          <ImageCard>
-            <img src={Images.PowerlineImage} alt="Power Lines" />
-          </ImageCard>
-        </FlexContainer>
+            
+          </TextContainer>
+        </TopSection>
       </MaxWidthWrapper>
     </SectionContainer>
   );
@@ -143,7 +103,6 @@ const CustomerFirstSection: React.FC = () => {
           <TextContainer>
             <UnderlinedSectionHeader center={false}>Customer First</UnderlinedSectionHeader>
             <p>
-              {/* todo */}
               A strong, customer-focused approach, conformance to global standards and the constant
               quest for top-class quality have enabled the group to sustain leadership in its major lines
               of business for over 60 years. As a result, we are now one of the stable & reliable companies
@@ -154,9 +113,6 @@ const CustomerFirstSection: React.FC = () => {
               standards with a focus on best-in-class practices.
             </p>
           </TextContainer>
-          <ImageContainer>
-            <img src={Images.BuildingImage} alt="Building" />
-          </ImageContainer>
         </FlexContainer>
       </MaxWidthWrapper>
     </SectionContainer>

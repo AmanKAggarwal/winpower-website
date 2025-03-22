@@ -18,6 +18,10 @@ import quotationMarks from '../assets/quotationmarks.png';
 import genericConstruction from '../assets/genericconstruction.png';
 import surveyInspectionHeader from '../assets/surveyinspectionheader.png';
 import powerGridBannerHome from '../assets/powergridbannerhome.png';
+import aegclLogo from '../assets/clients/aegcl.png';
+import apdclLogo from '../assets/clients/apdcl.png';
+import assampowergenerationLogo from '../assets/clients/assampowergeneration.png';
+import oilindiaLogo from '../assets/clients/oilindia.png';
 
 // Export individual images
 export {
@@ -40,6 +44,10 @@ export {
   genericConstruction as GenericConstructionImage,
   surveyInspectionHeader as SurveyInspectionHeaderImage,
   powerGridBannerHome as PowerGridBannerHomeImage,
+  aegclLogo as AEGCLLogoImage,
+  apdclLogo as APDCLLogoImage,
+  assampowergenerationLogo as AssamPowerGenerationLogoImage,
+  oilindiaLogo as OilIndiaLogoImage,
 };
 
 // Export as a single object
@@ -63,6 +71,10 @@ export const Images = {
   GenericConstructionImage: genericConstruction,
   SurveyInspectionHeaderImage: surveyInspectionHeader,
   PowerGridBannerHomeImage: powerGridBannerHome,
+  AEGCLLogoImage: aegclLogo,
+  APDCLLogoImage: apdclLogo,
+  AssamPowerGenerationLogoImage: assampowergenerationLogo,
+  OilIndiaLogoImage: oilindiaLogo,
 } as const;
 
 // Export type for type safety

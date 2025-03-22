@@ -21,7 +21,7 @@ const IdealDesignSection: React.FC = () => {
               </p>
             </TextContainer>
             <ImageContainer>
-              <img src={Images.GenericConstructionImage} alt="Design Building Blueprint" />
+              <img src={Images.BuildingImage} alt="Design Building Blueprint" />
             </ImageContainer>
           </FlexContainer>
         </MaxWidthWrapper>
