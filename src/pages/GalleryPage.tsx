@@ -43,25 +43,25 @@ const CategorySection = styled.section`
   }
 `;
 
-const CategoryTitle = styled.h2`
-  font-size: 1.2rem;
-  color: #333;
-  margin: 0.75rem 0;
-  text-align: center;
-  font-weight: 500;
-`;
+// const CategoryTitle = styled.h2`
+//   font-size: 1.2rem;
+//   color: #333;
+//   margin: 0.75rem 0;
+//   text-align: center;
+//   font-weight: 500;
+// `;
 
-const ThreeColumnGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  width: 100%;
-  justify-items: center;
+// const ThreeColumnGrid = styled.div`
+//   display: grid;
+//   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+//   gap: 1.5rem;
+//   width: 100%;
+//   justify-items: center;
   
-  @media (min-width: 1200px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-`;
+//   @media (min-width: 1200px) {
+//     grid-template-columns: repeat(3, 1fr);
+//   }
+// `;
 
 const FourColumnGrid = styled.div`
   display: grid;
@@ -101,15 +101,15 @@ const GalleryPage: React.FC = () => {
             <HeadlineImage src={galleryHeadlineImage} alt="Gallery Headline" />
           </HeadlineImageContainer>
           {galleryData.map((category, index) => {
-            const isAchievement = category.title === 'Achievement';
-            const Grid = isAchievement ? ThreeColumnGrid : FourColumnGrid;
+            // const isAchievement = category.title === 'Achievement';
+            const Grid = FourColumnGrid;
             
             return (
               <CategorySection key={index}>
-                <CategoryTitle>{category.title}</CategoryTitle>
+                {/* <CategoryTitle>{category.title}</CategoryTitle> */}
                 <Grid>
                   {category.images.map((imagePath, imageIndex) => (
-                    <ImageCard key={imageIndex} isLarge={isAchievement}>
+                    <ImageCard key={imageIndex} isLarge={false}>
                       <Image src={imagePath} alt={`${category.title} image ${imageIndex + 1}`} />
                     </ImageCard>
                   ))}
