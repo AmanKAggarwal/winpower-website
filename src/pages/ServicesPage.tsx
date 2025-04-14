@@ -88,6 +88,8 @@ const serviceImages: { [key: string]: string } = {
   '/services/substations-transmission-distribution-line': Images.SubstationHQImage,
   '/services/designing': Images.DesignBuildingImage,
   '/services/survey-inspection': Images.SurveyInspectionImage,
+  '/services/civil-construction': Images.BuildingImage,
+  '/services/consultancy': Images.CompassDrawingImage,
 };
 
 // Map service paths to their descriptions
