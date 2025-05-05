@@ -139,7 +139,7 @@ const ContactPage: React.FC = () => {
         </ContactGrid>
 
         <Footer>
-          <h3>WIN POWER INFRA PVT LTD helps you build your dream project.</h3>
+          <h3>WIN POWER INFRACON LLP helps you build your dream project.</h3>
           <p>For any updates and events kindly follow us on social media:</p>
           <SocialLinks>
             <a href="https://www.facebook.com/winpowerinfra" target="_blank" rel="noopener noreferrer">
