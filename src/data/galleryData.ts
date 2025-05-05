@@ -16,9 +16,15 @@ type ImageModule = {
 // const foodDistImages = import.meta.glob<ImageModule>('../assets/gallery/foodDistribution/*.{png,jpg,jpeg,gif}', { eager: true });
 const selectedImages = import.meta.glob<ImageModule>('../assets/gallery/selected/*.{png,jpg,jpeg,gif}', { eager: true });
 
-// Helper function to get image URLs from the import result
+// Helper function to get sorted image URLs based on filename
 const getImageUrls = (images: Record<string, ImageModule>) => {
-  return Object.values(images).map(module => module.default);
+  return Object.entries(images)
+    .sort(([pathA], [pathB]) => {
+      const fileNameA = pathA.split('/').pop()?.toLowerCase() || '';
+      const fileNameB = pathB.split('/').pop()?.toLowerCase() || '';
+      return fileNameA.localeCompare(fileNameB);
+    })
+    .map(([, module]) => module.default);
 };
 
 export const galleryData: GalleryCategory[] = [
