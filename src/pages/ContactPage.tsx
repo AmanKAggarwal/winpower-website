@@ -122,7 +122,7 @@ const ContactPage: React.FC = () => {
             </Icon>
             <CardTitle>Mail</CardTitle>
             <CardContent>
-              projects@winpowerinfra.com
+              winpowerinfraconllp@gmail.com
             </CardContent>
           </ContactCard>
 
@@ -133,7 +133,6 @@ const ContactPage: React.FC = () => {
             <CardTitle>Contact</CardTitle>
             <CardContent>
               0361-2460222<br />
-              (+91) 9531101669
             </CardContent>
           </ContactCard>
         </ContactGrid>
