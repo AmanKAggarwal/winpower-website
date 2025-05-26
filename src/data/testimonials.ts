@@ -8,20 +8,8 @@ interface Testimonial {
 export const testimonials: Testimonial[] = [
   {
     id: 1,
-    text: "The team at Win Power is very experience and reliable. They have being helping our organization with its civil and electrical works since last 10 years",
-    author: "Mr. Harsh Biyani",
-    position: "Vice President"
-  },
-  {
-    id: 2,
-    text: "Win Power has always proved that they can deliver on their commitments. They go beyond the requirements to ensure success of the project",
-    author: "Mr. Rajneesh Baruah",
-    position: "Head, Electrical Division"
-  },
-  {
-    id: 3,
-    text: "We have been associated with Win Power since many years for all our substation requirements & installations. I highly recommended them",
-    author: "Mr. Nikhil Thard",
-    position: "Proprietor"
+    text: "I personally know Shri Suresh Kumar Agarwalla for the past 25 years, and I have consistently been impressed by his expertise and unwavering commitment to the power infrastructure sector. My tenures as Chairman of the Assam State Electricity Board (ASEB) and CMD of the Assam Power Distribution Company Ltd (APDCL) provided me with direct insight into his successful leadership of numerous power projects within the Winpower Group of Companies. During this time, I personally witnessed his consistent ability to deliver projects on time and to the highest quality standards – a critical advantage for any client. Based on this extensive personal experience, I am sure of the prospects Winpower Infracon LLP and firmly believe their clients will greatly benefit from Shri Agarwalla's proven track record and dedication. I offer my sincere best wishes for their future success.",
+    author: "Subhash Ch Das",
+    position: "Former Chairman, ASEB & CMD, APDCL; Former Chairperson, AERC"
   }
 ];

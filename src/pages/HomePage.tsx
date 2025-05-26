@@ -296,27 +296,28 @@ const TestimonialAuthor = styled.div`
   }
 `;
 
-const DotContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 2rem;
-`;
+// TODO: uncomment this when dot navigation is needed
+// const DotContainer = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   gap: 0.5rem;
+//   margin-top: 2rem;
+// `;
 
-const Dot = styled.button<{ $active: boolean }>`
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: none;
-  background-color: ${props => props.$active ? '#e95d22' : 'rgba(233, 93, 34, 0.3)'};
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 0;
+// const Dot = styled.button<{ $active: boolean }>`
+//   width: 12px;
+//   height: 12px;
+//   border-radius: 50%;
+//   border: none;
+//   background-color: ${props => props.$active ? '#e95d22' : 'rgba(233, 93, 34, 0.3)'};
+//   cursor: pointer;
+//   transition: all 0.3s ease;
+//   padding: 0;
 
-  &:hover {
-    background-color: ${props => props.$active ? '#e95d22' : 'rgba(233, 93, 34, 0.5)'};
-  }
-`;
+//   &:hover {
+//     background-color: ${props => props.$active ? '#e95d22' : 'rgba(233, 93, 34, 0.5)'};
+//   }
+// `;
 
 const ArrowButton = styled.button<{ $direction: 'left' | 'right' }>`
   background: none;
@@ -565,7 +566,7 @@ const HomePage: React.FC = () => {
                 ))}
               </TestimonialSlider>
             </TestimonialContainer>
-            <DotContainer>
+            {/* <DotContainer>
               {testimonials.map((_, index) => (
                 <Dot
                   key={index}
@@ -573,7 +574,7 @@ const HomePage: React.FC = () => {
                   onClick={() => setCurrentTestimonial(index)}
                 />
               ))}
-            </DotContainer>
+            </DotContainer> */}
           </TestimonialWrapper>
         </TestimonialsSection>
 
