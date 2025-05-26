@@ -319,36 +319,36 @@ const TestimonialAuthor = styled.div`
 //   }
 // `;
 
-const ArrowButton = styled.button<{ $direction: 'left' | 'right' }>`
-  background: none;
-  border: none;
-  color: #e95d22;
-  font-size: 2rem;
-  cursor: pointer;
-  padding: 1rem;
-  transition: transform 0.3s ease;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  ${props => props.$direction === 'left' ? 'left: -4rem;' : 'right: -4rem;'}
-  z-index: 2;
-  background-color: white;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #e95d22;
+// const ArrowButton = styled.button<{ $direction: 'left' | 'right' }>`
+//   background: none;
+//   border: none;
+//   color: #e95d22;
+//   font-size: 2rem;
+//   cursor: pointer;
+//   padding: 1rem;
+//   transition: transform 0.3s ease;
+//   position: absolute;
+//   top: 50%;
+//   transform: translateY(-50%);
+//   ${props => props.$direction === 'left' ? 'left: -4rem;' : 'right: -4rem;'}
+//   z-index: 2;
+//   background-color: white;
+//   border-radius: 50%;
+//   width: 50px;
+//   height: 50px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   border: 2px solid #e95d22;
 
-  &:hover {
-    transform: translateY(-50%) scale(1.1);
-  }
+//   &:hover {
+//     transform: translateY(-50%) scale(1.1);
+//   }
 
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
+//   @media (max-width: 768px) {
+//     display: none;
+//   }
+// `;
 
 const DiscussSection = styled(Section)`
   background: #e95d22;
@@ -462,13 +462,13 @@ const HomePage: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handlePrevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
+  // const handlePrevTestimonial = () => {
+  //   setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  // };
 
-  const handleNextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
+  // const handleNextTestimonial = () => {
+  //   setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  // };
 
   return (
     <HomePageContainer>
@@ -538,14 +538,15 @@ const HomePage: React.FC = () => {
         </ProjectsSection>
 
         <TestimonialsSection>
-          <SectionTitle>WHAT THEY'RE SAYING</SectionTitle>
+          <SectionTitle>Testimonials</SectionTitle>
           <TestimonialWrapper>
-            <ArrowButton $direction="left" onClick={handlePrevTestimonial}>
+            {/* Uncomment the arrows if you want to enable manual navigation */}
+            {/* <ArrowButton $direction="left" onClick={handlePrevTestimonial}>
               &#8592;
             </ArrowButton>
             <ArrowButton $direction="right" onClick={handleNextTestimonial}>
               &#8594;
-            </ArrowButton>
+            </ArrowButton> */}
             <TestimonialContainer>
               <TestimonialSlider
                 style={{

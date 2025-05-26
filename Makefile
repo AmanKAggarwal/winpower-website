@@ -33,9 +33,9 @@ rebuild: clean install build deploy-prod
 
 # Create a new version tag and push
 tag:
-	@read -p "Enter version (e.g., 1.0.0): " version; \
-	git tag -a v$$version -m "Release v$$version"; \
-	git push origin v$$version
+	version := $(shell git rev-parse HEAD)
+	git tag -a v$(version) -m "Release v$(version)"; \
+	git push origin v$(version)
 
 # Delete a tag
 delete-tag:
